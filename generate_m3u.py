@@ -16,30 +16,32 @@ for channel in data["channels"]:
     source = channel["url"]
     extractor = channel.get("extractor")
 
-    params = []
+    if extractor:
+        params = [
+            f"host={quote(extractor, safe='')}",
+            f"d={quote(source, safe='')}",
+            "redirect_stream=true",
+        ]
 
-  if extractor:
-    params = [
-        f"host={quote(extractor, safe='')}",
-        f"d={quote(source, safe='')}",
-        "redirect_stream=true",
-    ]
+        easyproxy_url = (
+            f"{base}/extractor/video?"
+            + "&".join(params)
+        )
 
-    easyproxy_url = (
-        f"{base}/extractor/video?"
-        + "&".join(params)
-    )
-else:
-    easyproxy_url = (
-        f"{base}/proxy/manifest.m3u8?d="
-        + quote(source, safe="")
-    )
+    else:
+        easyproxy_url = (
+            f"{base}/proxy/manifest.m3u8?d="
+            + quote(source, safe="")
+        )
 
     lines.append(
-        f'#EXTINF:-1 tvg-id="{tvg_id}" '
+        f'#EXTINF:-1 '
+        f'tvg-id="{tvg_id}" '
         f'tvg-logo="{logo}" '
-        f'group-title="{group}",{name}'
+        f'group-title="{group}",'
+        f'{name}'
     )
+
     lines.append(easyproxy_url)
 
 with open("playlist.m3u", "w", encoding="utf-8") as f:
