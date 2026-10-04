@@ -1,0 +1,3 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="test" tvg-logo="" group-title="TEST",TEST
+https://bittersun-e0611.app.onebit.ng/extractor/video?d=https%3A%2F%2Ftest-streams.mux.dev%2Fx36xhzz%2Fx36xhzz.m3u8&redirect_stream=true
