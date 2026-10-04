@@ -18,15 +18,21 @@ for channel in data["channels"]:
 
     params = []
 
-    if extractor:
-        params.append(f"host={quote(extractor)}")
-
-    params.append(f"d={quote(source, safe='')}")
-    params.append("redirect_stream=true")
+  if extractor:
+    params = [
+        f"host={quote(extractor, safe='')}",
+        f"d={quote(source, safe='')}",
+        "redirect_stream=true",
+    ]
 
     easyproxy_url = (
         f"{base}/extractor/video?"
         + "&".join(params)
+    )
+else:
+    easyproxy_url = (
+        f"{base}/proxy/manifest.m3u8?d="
+        + quote(source, safe="")
     )
 
     lines.append(
