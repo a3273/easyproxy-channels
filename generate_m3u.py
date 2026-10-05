@@ -221,38 +221,51 @@ def main():
                 "priority": stream.get(
                     "priority",
                     999
+                ),
+                "source_url_configured": bool(
+                    source_url
                 )
             }
 
             if not provider_name:
+                print(
+                    f"[ERROR] {channel_name} / "
+                    f"{stream_name}: provider mancante"
+                )
+
                 stream_status["status"] = "error"
                 stream_status["error"] = (
                     "provider mancante"
                 )
-                status["summary"]["streams_failed"] += 1
-                channel_status["streams"].append(
-                    stream_status
-                )
-                continue
 
-            if not source_url:
-                stream_status["status"] = (
-                    "not_configured"
-                )
-                stream_status["error"] = (
-                    "nessun URL sorgente configurato"
-                )
-                status["summary"]["streams_failed"] += 1
+                status["summary"][
+                    "streams_failed"
+                ] += 1
+
                 channel_status["streams"].append(
                     stream_status
                 )
+
                 continue
 
             try:
+                print(
+                    f"[RESOLVE] "
+                    f"{channel_name} / "
+                    f"{stream_name} / "
+                    f"provider={provider_name} / "
+                    f"url_configured="
+                    f"{bool(source_url)}"
+                )
+
                 provider = load_provider(
                     provider_name
                 )
 
+                # IMPORTANTE:
+                # il provider riceve sempre channel + stream.
+                # source_url può essere vuoto: il provider può
+                # effettuare discovery dinamico.
                 result = provider.resolve(
                     channel,
                     stream
@@ -265,6 +278,13 @@ def main():
 
                 resolved_url = clean(
                     result.get("url")
+                )
+
+                print(
+                    f"[RESOLVE RESULT] "
+                    f"{channel_name} / "
+                    f"{stream_name} -> "
+                    f"{bool(resolved_url)}"
                 )
 
                 if not resolved_url:
@@ -314,6 +334,14 @@ def main():
                 ] += 1
 
             except Exception as exc:
+
+                print(
+                    f"[RESOLVE ERROR] "
+                    f"{channel_name} / "
+                    f"{stream_name}: "
+                    f"{exc}"
+                )
+
                 stream_status["status"] = "error"
                 stream_status["error"] = str(exc)
 
@@ -460,26 +488,33 @@ def main():
     print(
         "----------------------------------------"
     )
+
     print("M3U generation completed")
+
     print(
         f"Channels: "
         f"{status['summary']['channels_enabled']}/"
         f"{status['summary']['channels_total']}"
     )
+
     print(
         f"Streams generated: "
         f"{status['summary']['streams_generated']}"
     )
+
     print(
         f"Streams failed: "
         f"{status['summary']['streams_failed']}"
     )
+
     print(
         f"Playlist: {PLAYLIST_FILE}"
     )
+
     print(
         f"Status: {STATUS_FILE}"
     )
+
     print(
         "----------------------------------------"
     )
