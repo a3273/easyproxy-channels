@@ -1,6 +1,6 @@
 {
   "easyproxy_base": "https://bittersun-e0611.app.onebit.ng",
-  "default_proxy": "ato",
+  "default_proxy": "auto",
   "channels": [
     {
       "name": "Sky Sport 24",
