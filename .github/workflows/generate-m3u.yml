@@ -6,10 +6,18 @@ on:
       - "channels.json"
       - "generate_m3u.py"
       - "providers/**"
+
   workflow_dispatch:
+
+  schedule:
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: write
+
+concurrency:
+  group: generate-m3u
+  cancel-in-progress: true
 
 jobs:
   generate:
@@ -27,8 +35,10 @@ jobs:
       - name: Generate playlist
         run: python generate_m3u.py
 
-      - name: Commit playlist
+      - name: Commit generated files
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: "chore: update playlist.m3u"
-          file_pattern: playlist.m3u
+          commit_message: "chore: update playlist and status"
+          file_pattern: |
+            playlist.m3u
+            status.json
