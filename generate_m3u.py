@@ -30,7 +30,7 @@ status = {
     "channels": []
 }
 
-seen_urls = set()
+seen_streams = set()
 
 
 for channel in data.get("channels", []):
