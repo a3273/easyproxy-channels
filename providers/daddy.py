@@ -2,19 +2,32 @@ from urllib.parse import urlparse
 
 
 def resolve(source_url: str) -> dict:
-    parsed = urlparse(source_url)
 
-    if parsed.scheme not in ("http", "https"):
-        raise ValueError("URL non valido")
+    parsed = urlparse(
+        source_url
+    )
 
-    print(f"[DADDY_PROVIDER] Risolvo: {source_url}")
+    if parsed.scheme not in (
+        "http",
+        "https"
+    ):
+        raise ValueError(
+            "URL non valido"
+        )
+
+    print(
+        f"[DADDY_PROVIDER] "
+        f"Risolvo: {source_url}"
+    )
 
     return {
         "url": source_url,
         "provider": "Daddy",
         "quality": "HD",
         "priority": 1,
-        "headers": {
-            "User-Agent": "EasyProxy-Test/1.0"
-        }
+
+        "proxy": "auto",
+        "proxy_required": False,
+
+        "headers": {}
     }
