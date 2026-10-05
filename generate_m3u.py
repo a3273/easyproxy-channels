@@ -17,10 +17,17 @@ for channel in data["channels"]:
 
     resolved_streams = []
 
-    for stream in channel.get("streams", []):
+        for stream in channel.get("streams", []):
         stream_name = stream.get("name", "Stream")
-        source = stream["url"]
+        source = stream.get("url", "").strip()
         provider_name = stream.get("provider")
+
+        # Salta gli stream senza URL
+        if not source:
+            print(
+                f"[SKIP] {name} / {stream_name}: URL non ancora impostato"
+            )
+            continue
 
         if not provider_name:
             raise ValueError(
