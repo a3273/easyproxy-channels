@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "easyproxy_base": "https://bittersun-e0611.app.onebit.ng",
   "channels": [
     {
@@ -7,9 +7,18 @@
       "group": "TEST",
       "tvg_id": "test",
       "tvg_logo": "",
-      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
-      "extractor": null,
-      "provider": "test_provider"
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        }
+      ]
     }
   ]
 }
