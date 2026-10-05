@@ -314,7 +314,7 @@
       ]
     },
 
-    {
+       {
       "name": "DAZN 1",
       "enabled": true,
       "group": "DAZN",
@@ -336,29 +336,30 @@
           "url": ""
         }
       ]
-    }
-  ]
-}
-{
-  "name": "TEST Mux",
-  "enabled": true,
-  "group": "TEST",
-  "tvg_id": "TEST-Mux",
-  "tvg_logo": "",
-  "streams": [
-    {
-      "name": "Daddy",
-      "provider": "daddy",
-      "priority": 1,
-      "enabled": true,
-      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
     },
+
     {
-      "name": "CDN",
-      "provider": "cdn",
-      "priority": 2,
+      "name": "TEST Mux",
       "enabled": true,
-      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+      "group": "TEST",
+      "tvg_id": "TEST-Mux",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "priority": 1,
+          "enabled": true,
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "priority": 2,
+          "enabled": true,
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        }
+      ]
     }
   ]
 }
