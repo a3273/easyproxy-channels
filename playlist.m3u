@@ -1,3 +1,5 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="test" tvg-logo="" group-title="TEST",TEST
+#EXTINF:-1 tvg-id="test" tvg-logo="" group-title="TEST",TEST [Daddy]
+https://bittersun-e0611.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Ftest-streams.mux.dev%2Fx36xhzz%2Fx36xhzz.m3u8
+#EXTINF:-1 tvg-id="test" tvg-logo="" group-title="TEST",TEST [CDN]
 https://bittersun-e0611.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Ftest-streams.mux.dev%2Fx36xhzz%2Fx36xhzz.m3u8
