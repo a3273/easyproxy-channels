@@ -354,3 +354,17 @@
     }
   ]
 }
+{
+  "name": "TEST Mux",
+  "logo": "",
+  "streams": [
+    {
+      "name": "Authorized",
+      "provider": "test",
+      "priority": 1,
+      "enabled": true,
+      "proxy": "auto",
+      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+    }
+  ]
+}
