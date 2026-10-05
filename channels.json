@@ -1,22 +1,256 @@
 {
-  "version": 2,
+  "version": 3,
   "easyproxy_base": "https://bittersun-e0611.app.onebit.ng",
   "channels": [
     {
-      "name": "TEST",
-      "group": "TEST",
-      "tvg_id": "test",
+      "name": "Sky Sport 24",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-24",
       "tvg_logo": "",
       "streams": [
         {
           "name": "Daddy",
           "provider": "daddy",
-          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+          "url": ""
         },
         {
           "name": "CDN",
           "provider": "cdn",
-          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Uno",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-uno",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Calcio",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-calcio",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Tennis",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-tennis",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport F1",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-f1",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport MotoGP",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-motogp",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Arena",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-arena",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Max",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-max",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Mix",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-mix",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Basket",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-basket",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky Sport Golf",
+      "group": "SKY SPORT",
+      "tvg_id": "sky-sport-golf",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Eurosport 1",
+      "group": "EUROSPORT",
+      "tvg_id": "eurosport-1",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Eurosport 2",
+      "group": "EUROSPORT",
+      "tvg_id": "eurosport-2",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "DAZN 1",
+      "group": "DAZN",
+      "tvg_id": "dazn-1",
+      "tvg_logo": "",
+      "streams": [
+        {
+          "name": "Daddy",
+          "provider": "daddy",
+          "url": ""
+        },
+        {
+          "name": "CDN",
+          "provider": "cdn",
+          "url": ""
         }
       ]
     }
