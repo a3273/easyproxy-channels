@@ -7,6 +7,7 @@ with open("channels.json", "r", encoding="utf-8") as f:
 
 base = data["easyproxy_base"].rstrip("/")
 
+generated_count = 0
 lines = ["#EXTM3U"]
 
 for channel in data["channels"]:
@@ -87,14 +88,12 @@ for channel in data["channels"]:
 
         lines.append(stream_url)
 
+        generated_count += 1
+
 with open("playlist.m3u", "w", encoding="utf-8") as f:
     f.write(
         "\n".join(lines)
         + "\n"
     )
 
-print(
-    f"Generati "
-    f"{sum(len(c.get('streams', [])) for c in data['channels'])} "
-    f"stream."
-)
+print(f"Generati {generated_count} stream.")
