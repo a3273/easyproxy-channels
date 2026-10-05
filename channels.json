@@ -1,11 +1,12 @@
 {
-  "version": 3,
   "easyproxy_base": "https://bittersun-e0611.app.onebit.ng",
+
   "channels": [
     {
       "name": "Sky Sport 24",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-24",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport 24",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-24-it.png",
       "streams": [
         {
@@ -24,10 +25,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Uno",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-uno",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Uno",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-uno-it.png",
       "streams": [
         {
@@ -46,10 +49,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Calcio",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-calcio",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Calcio",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-calcio-it.png",
       "streams": [
         {
@@ -68,10 +73,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Tennis",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-tennis",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Tennis",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-tennis-it.png",
       "streams": [
         {
@@ -90,10 +97,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport F1",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-f1",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport F1",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-f1-it.png",
       "streams": [
         {
@@ -112,10 +121,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport MotoGP",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-motogp",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport MotoGP",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-motogp-it.png",
       "streams": [
         {
@@ -134,10 +145,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Arena",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-arena",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Arena",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-arena-it.png",
       "streams": [
         {
@@ -156,10 +169,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Max",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-max",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Max",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png",
       "streams": [
         {
@@ -178,10 +193,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Mix",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-mix",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Mix",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-mix-it.png",
       "streams": [
         {
@@ -200,10 +217,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Basket",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-basket",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Basket",
       "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Sky_Sport_Basket_-_Logo_2026.svg",
       "streams": [
         {
@@ -222,10 +241,12 @@
         }
       ]
     },
+
     {
       "name": "Sky Sport Golf",
-      "group": "SKY SPORT",
-      "tvg_id": "sky-sport-golf",
+      "enabled": true,
+      "group": "Sky Sport",
+      "tvg_id": "Sky Sport Golf",
       "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-golf-it.png",
       "streams": [
         {
@@ -244,10 +265,12 @@
         }
       ]
     },
+
     {
       "name": "Eurosport 1",
-      "group": "EUROSPORT",
-      "tvg_id": "eurosport-1",
+      "enabled": true,
+      "group": "Eurosport",
+      "tvg_id": "Eurosport 1",
       "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Eurosport_1_Logo_2015.png",
       "streams": [
         {
@@ -266,10 +289,12 @@
         }
       ]
     },
+
     {
       "name": "Eurosport 2",
-      "group": "EUROSPORT",
-      "tvg_id": "eurosport-2",
+      "enabled": true,
+      "group": "Eurosport",
+      "tvg_id": "Eurosport 2",
       "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Eurosport_2_Logo_2015.png",
       "streams": [
         {
@@ -288,10 +313,12 @@
         }
       ]
     },
+
     {
       "name": "DAZN 1",
+      "enabled": true,
       "group": "DAZN",
-      "tvg_id": "dazn-1",
+      "tvg_id": "DAZN 1",
       "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/1/18/DAZN_1_2024.svg",
       "streams": [
         {
