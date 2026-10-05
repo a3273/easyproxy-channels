@@ -1,7 +1,6 @@
 {
   "easyproxy_base": "https://bittersun-e0611.app.onebit.ng",
   "default_proxy": "auto",
-
   "channels": [
     {
       "name": "Sky Sport 24",
@@ -19,7 +18,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -44,7 +43,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -69,7 +68,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -94,7 +93,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -119,7 +118,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -144,7 +143,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -169,7 +168,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -194,7 +193,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -219,7 +218,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -244,7 +243,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -269,7 +268,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -294,7 +293,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -319,7 +318,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
@@ -328,7 +327,7 @@
         }
       ]
     },
-      {
+    {
       "name": "DAZN 1",
       "enabled": true,
       "group": "DAZN",
@@ -344,7 +343,7 @@
           "url": ""
         },
         {
-          "name": "CDN",
+          "name": "CDNLiveTV",
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
