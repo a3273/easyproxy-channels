@@ -1,560 +1,489 @@
 import importlib
 import json
+from pathlib import Path
 from urllib.parse import quote
 
 
-CHANNELS_FILE = "channels.json"
-PLAYLIST_FILE = "playlist.m3u"
-STATUS_FILE = "status.json"
+CHANNELS_FILE = Path("channels.json")
+PLAYLIST_FILE = Path("playlist.m3u")
+STATUS_FILE = Path("status.json")
 
 
-def clean(value):
+def clean(value) -> str:
     return str(value or "").strip()
 
 
-def m3u_escape(value):
+def m3u_escape(value: str) -> str:
     return clean(value).replace('"', "'")
 
 
-def normalize_proxy_policy(value):
-    if isinstance(value, bool):
-        return "proxy" if value else "direct"
-
+def normalize_proxy_policy(value, default="auto") -> str:
     value = clean(value).lower()
 
-    if value in {"true", "yes", "1", "proxy"}:
-        return "proxy"
+    if value in {"direct", "proxy", "auto"}:
+        return value
 
-    if value in {"false", "no", "0", "direct"}:
-        return "direct"
-
-    return "auto"
+    return default
 
 
-def choose_playback_mode(stream_policy, provider_result):
-    policy = normalize_proxy_policy(stream_policy)
+def choose_playback_mode(
+    stream: dict,
+    result: dict,
+    default_proxy: str
+) -> str:
+
+    stream_policy = normalize_proxy_policy(
+        stream.get("proxy"),
+        default_proxy
+    )
 
     provider_policy = normalize_proxy_policy(
-        provider_result.get("proxy", "auto")
+        result.get("proxy"),
+        "auto"
     )
 
-    proxy_required = bool(
-        provider_result.get("proxy_required", False)
-    )
+    if stream_policy == "direct":
+        return "direct"
 
-    if policy in {"direct", "proxy"}:
-        return policy
+    if stream_policy == "proxy":
+        return "proxy"
 
-    if provider_policy in {"direct", "proxy"}:
-        return provider_policy
+    if provider_policy == "direct":
+        return "direct"
 
-    return "proxy" if proxy_required else "direct"
+    if provider_policy == "proxy":
+        return "proxy"
+
+    if result.get("proxy_required") is True:
+        return "proxy"
+
+    return "direct"
 
 
-def make_playback_url(source_url, mode, base):
+def make_playback_url(
+    url: str,
+    mode: str,
+    easyproxy_base: str
+) -> str:
+
+    url = clean(url)
+
+    if not url:
+        raise ValueError("URL playback vuoto")
+
+    if mode == "direct":
+        return url
+
     if mode == "proxy":
+        base = clean(easyproxy_base).rstrip("/")
+
+        if not base:
+            raise ValueError(
+                "easyproxy_base non configurato"
+            )
+
         return (
             f"{base}/proxy/manifest.m3u8?d="
-            + quote(source_url, safe="")
+            f"{quote(url, safe='')}"
         )
 
-    return source_url
-
-
-with open(CHANNELS_FILE, "r", encoding="utf-8") as f:
-    data = json.load(f)
-
-
-base = clean(
-    data["easyproxy_base"]
-).rstrip("/")
-
-default_proxy = normalize_proxy_policy(
-    data.get("default_proxy", "auto")
-)
-
-
-lines = ["#EXTM3U"]
-
-seen_streams = set()
-
-status = {
-    "generated": 0,
-    "skipped": 0,
-    "errors": 0,
-    "channels": []
-}
-
-
-for channel in data.get("channels", []):
-
-    name = clean(
-        channel.get("name")
+    raise ValueError(
+        f"Modalità playback non valida: {mode}"
     )
 
-    group = clean(
-        channel.get(
-            "group",
-            "Other"
+
+def load_config() -> dict:
+    if not CHANNELS_FILE.exists():
+        raise FileNotFoundError(
+            f"File non trovato: {CHANNELS_FILE}"
         )
+
+    with CHANNELS_FILE.open(
+        "r",
+        encoding="utf-8"
+    ) as handle:
+        return json.load(handle)
+
+
+def load_provider(name: str):
+    module_name = (
+        f"providers.{clean(name).lower()}"
     )
 
-    tvg_id = clean(
-        channel.get("tvg_id")
+    return importlib.import_module(module_name)
+
+
+def write_status(status: dict):
+    with STATUS_FILE.open(
+        "w",
+        encoding="utf-8"
+    ) as handle:
+        json.dump(
+            status,
+            handle,
+            indent=2,
+            ensure_ascii=False
+        )
+
+
+def main():
+    config = load_config()
+
+    easyproxy_base = clean(
+        config.get("easyproxy_base")
     )
 
-    logo = clean(
-        channel.get("tvg_logo")
+    default_proxy = normalize_proxy_policy(
+        config.get("default_proxy"),
+        "auto"
     )
 
-    channel_status = {
-        "name": name,
-        "status": "ok",
-        "generated": 0,
-        "streams": []
+    channels = config.get("channels", [])
+
+    if not isinstance(channels, list):
+        raise ValueError(
+            '"channels" deve essere una lista'
+        )
+
+    output = ["#EXTM3U"]
+
+    status = {
+        "summary": {
+            "channels_total": 0,
+            "channels_enabled": 0,
+            "streams_total": 0,
+            "streams_generated": 0,
+            "streams_failed": 0
+        },
+        "channels": {}
     }
 
+    for channel in channels:
 
-    if not channel.get(
-        "enabled",
-        True
-    ):
+        if not isinstance(channel, dict):
+            continue
 
-        print(
-            f"[DISABLED] {name}"
+        channel_name = clean(
+            channel.get("name")
         )
 
-        channel_status["status"] = "disabled"
+        if not channel_name:
+            continue
 
-        status["skipped"] += 1
+        status["summary"]["channels_total"] += 1
 
-        status["channels"].append(
-            channel_status
-        )
+        if channel.get("enabled", True) is not True:
+            status["channels"][channel_name] = {
+                "enabled": False,
+                "streams": []
+            }
+            continue
 
-        continue
+        status["summary"]["channels_enabled"] += 1
 
+        streams = channel.get("streams", [])
 
-    resolved_streams = []
+        if not isinstance(streams, list):
+            streams = []
 
-
-    for stream in channel.get(
-        "streams",
-        []
-    ):
-
-        stream_name = clean(
-            stream.get(
-                "name",
-                "Stream"
-            )
-        )
-
-        provider_name = clean(
-            stream.get(
-                "provider"
-            )
-        )
-
-        source = clean(
-            stream.get("url")
-        )
-
-
-        stream_status = {
-            "name": stream_name,
-            "provider": provider_name,
-            "source_configured": bool(source)
+        channel_status = {
+            "enabled": True,
+            "streams": []
         }
 
-        channel_status[
-            "streams"
-        ].append(
-            stream_status
-        )
+        resolved_streams = []
 
+        for stream in streams:
 
-        if not stream.get(
-            "enabled",
-            True
-        ):
+            if not isinstance(stream, dict):
+                continue
 
-            print(
-                f"[SKIP] {name} / "
-                f"{stream_name}: disabled"
+            if stream.get("enabled", True) is not True:
+                continue
+
+            status["summary"]["streams_total"] += 1
+
+            stream_name = clean(
+                stream.get("name")
             )
 
-            stream_status[
-                "status"
-            ] = "disabled"
+            provider_name = clean(
+                stream.get("provider")
+            ).lower()
 
-            status[
-                "skipped"
-            ] += 1
-
-            continue
-
-
-        if not source:
-
-            print(
-                f"[SKIP] {name} / "
-                f"{stream_name}: "
-                f"URL non ancora impostato"
+            source_url = clean(
+                stream.get("url")
             )
 
-            stream_status[
-                "status"
-            ] = "not_configured"
-
-            status[
-                "skipped"
-            ] += 1
-
-            continue
-
-
-        if not provider_name:
-
-            print(
-                f"[ERROR] {name} / "
-                f"{stream_name}: "
-                f"provider mancante"
-            )
-
-            stream_status[
-                "status"
-            ] = "error"
-
-            stream_status[
-                "error"
-            ] = "provider mancante"
-
-            status[
-                "errors"
-            ] += 1
-
-            continue
-
-
-        try:
-
-            module = importlib.import_module(
-                f"providers.{provider_name}"
-            )
-
-            result = module.resolve(
-                source
-            )
-
-            resolved_url = clean(
-                result.get("url")
-            )
-
-            if not resolved_url:
-
-                raise ValueError(
-                    "Il provider non ha "
-                    "restituito un URL"
+            stream_status = {
+                "name": stream_name,
+                "provider": provider_name,
+                "priority": stream.get(
+                    "priority",
+                    999
                 )
+            }
 
+            if not provider_name:
+                stream_status["status"] = "error"
+                stream_status["error"] = (
+                    "provider mancante"
+                )
+                status["summary"]["streams_failed"] += 1
+                channel_status["streams"].append(
+                    stream_status
+                )
+                continue
+
+            if not source_url:
+                stream_status["status"] = (
+                    "not_configured"
+                )
+                stream_status["error"] = (
+                    "nessun URL sorgente configurato"
+                )
+                status["summary"]["streams_failed"] += 1
+                channel_status["streams"].append(
+                    stream_status
+                )
+                continue
 
             try:
+                provider = load_provider(
+                    provider_name
+                )
+
+                result = provider.resolve(
+                    channel,
+                    stream
+                )
+
+                if not isinstance(result, dict):
+                    raise ValueError(
+                        "Il provider non ha restituito un dict"
+                    )
+
+                resolved_url = clean(
+                    result.get("url")
+                )
+
+                if not resolved_url:
+                    raise ValueError(
+                        "Il provider non ha restituito un URL"
+                    )
+
+                mode = choose_playback_mode(
+                    stream,
+                    result,
+                    default_proxy
+                )
+
+                playback_url = make_playback_url(
+                    resolved_url,
+                    mode,
+                    easyproxy_base
+                )
 
                 priority = int(
-                    result.get(
+                    stream.get(
                         "priority",
-                        stream.get(
+                        result.get(
                             "priority",
                             999
                         )
                     )
                 )
 
-            except (
-                TypeError,
-                ValueError
-            ):
+                resolved_streams.append({
+                    "stream": stream,
+                    "result": result,
+                    "priority": priority,
+                    "mode": mode,
+                    "url": playback_url
+                })
 
-                priority = 999
+                stream_status.update({
+                    "status": "resolved",
+                    "mode": mode,
+                    "url": playback_url,
+                    "resolved_url": resolved_url
+                })
 
+                status["summary"][
+                    "streams_generated"
+                ] += 1
 
-            stream_policy = stream.get(
-                "proxy",
-                channel.get(
-                    "proxy",
-                    default_proxy
+            except Exception as exc:
+                stream_status["status"] = "error"
+                stream_status["error"] = str(exc)
+
+                status["summary"][
+                    "streams_failed"
+                ] += 1
+
+            channel_status["streams"].append(
+                stream_status
+            )
+
+        resolved_streams.sort(
+            key=lambda item: item["priority"]
+        )
+
+        seen = set()
+
+        for item in resolved_streams:
+
+            result = item["result"]
+            stream = item["stream"]
+            mode = item["mode"]
+            playback_url = item["url"]
+
+            provider_label = clean(
+                result.get(
+                    "provider",
+                    stream.get(
+                        "name",
+                        "Provider"
+                    )
                 )
             )
 
-            playback_mode = choose_playback_mode(
-                stream_policy,
-                result
-            )
-
-            playback_url = make_playback_url(
-                resolved_url,
-                playback_mode,
-                base
-            )
-
-
-            resolved_streams.append(
-                {
-                    "name": stream_name,
-
-                    "provider": clean(
-                        result.get(
-                            "provider",
-                            stream_name
-                        )
-                    ),
-
-                    "quality": clean(
-                        result.get(
-                            "quality",
-                            "Unknown"
-                        )
-                    ),
-
-                    "priority": priority,
-
-                    "url": playback_url,
-
-                    "source_url": resolved_url,
-
-                    "playback_mode": playback_mode,
-
-                    "headers": result.get(
-                        "headers",
-                        {}
-                    ) or {}
-                }
-            )
-
-
-            stream_status[
-                "status"
-            ] = "ok"
-
-            stream_status[
-                "quality"
-            ] = clean(
+            quality = clean(
                 result.get(
                     "quality",
-                    "Unknown"
+                    "HD"
                 )
             )
 
-            stream_status[
-                "priority"
-            ] = priority
-
-            stream_status[
-                "playback_mode"
-            ] = playback_mode
-
-
-            print(
-                f"[OK] {name} / "
-                f"{stream_name} "
-                f"-> "
-                f"{playback_mode.upper()}"
+            stream_key = (
+                channel_name,
+                provider_label,
+                playback_url
             )
 
+            if stream_key in seen:
+                continue
 
-        except Exception as error:
+            seen.add(stream_key)
 
-            print(
-                f"[ERROR] {name} / "
-                f"{stream_name}: "
-                f"{error}"
+            tvg_id = m3u_escape(
+                channel.get(
+                    "tvg_id",
+                    channel_name
+                )
             )
 
-            stream_status[
-                "status"
-            ] = "error"
+            tvg_name = m3u_escape(
+                channel_name
+            )
 
-            stream_status[
-                "error"
-            ] = str(error)
+            tvg_logo = m3u_escape(
+                channel.get(
+                    "tvg_logo",
+                    ""
+                )
+            )
 
-            status[
-                "errors"
-            ] += 1
+            group = m3u_escape(
+                channel.get(
+                    "group",
+                    "Live TV"
+                )
+            )
 
+            label = (
+                f"{channel_name} "
+                f"[{provider_label}] "
+                f"[{quality}] "
+                f"[{mode.upper()}]"
+            )
 
-    resolved_streams.sort(
-        key=lambda item:
-        item["priority"]
+            output.append(
+                '#EXTINF:-1 '
+                f'tvg-id="{tvg_id}" '
+                f'tvg-name="{tvg_name}" '
+                f'tvg-logo="{tvg_logo}" '
+                f'group-title="{group}",'
+                f'{m3u_escape(label)}'
+            )
+
+            headers = result.get(
+                "headers",
+                {}
+            )
+
+            if isinstance(headers, dict):
+
+                user_agent = clean(
+                    headers.get(
+                        "User-Agent"
+                    )
+                )
+
+                referrer = clean(
+                    headers.get(
+                        "Referer"
+                    )
+                )
+
+                if user_agent:
+                    output.append(
+                        "#EXTVLCOPT:http-user-agent="
+                        + user_agent
+                    )
+
+                if referrer:
+                    output.append(
+                        "#EXTVLCOPT:http-referrer="
+                        + referrer
+                    )
+
+            output.append(
+                playback_url
+            )
+
+        status["channels"][channel_name] = (
+            channel_status
+        )
+
+    with PLAYLIST_FILE.open(
+        "w",
+        encoding="utf-8",
+        newline="\n"
+    ) as handle:
+        handle.write(
+            "\n".join(output) + "\n"
+        )
+
+    write_status(status)
+
+    print(
+        "----------------------------------------"
+    )
+    print("M3U generation completed")
+    print(
+        f"Channels: "
+        f"{status['summary']['channels_enabled']}/"
+        f"{status['summary']['channels_total']}"
+    )
+    print(
+        f"Streams generated: "
+        f"{status['summary']['streams_generated']}"
+    )
+    print(
+        f"Streams failed: "
+        f"{status['summary']['streams_failed']}"
+    )
+    print(
+        f"Playlist: {PLAYLIST_FILE}"
+    )
+    print(
+        f"Status: {STATUS_FILE}"
+    )
+    print(
+        "----------------------------------------"
     )
 
 
-    for stream in resolved_streams:
-
-        duplicate_key = (
-            name,
-            stream["provider"],
-            stream["url"]
-        )
-
-
-        if duplicate_key in seen_streams:
-
-            print(
-                f"[DUPLICATE] {name} / "
-                f"{stream['provider']}"
-            )
-
-            continue
-
-
-        seen_streams.add(
-            duplicate_key
-        )
-
-
-        display_name = (
-            f"{name} "
-            f"[{stream['provider']}] "
-            f"[{stream['quality']}] "
-            f"[{stream['playback_mode'].upper()}]"
-        )
-
-
-        lines.append(
-            f'#EXTINF:-1 '
-            f'tvg-id="{m3u_escape(tvg_id)}" '
-            f'tvg-name="{m3u_escape(name)}" '
-            f'tvg-logo="{m3u_escape(logo)}" '
-            f'group-title="{m3u_escape(group)}",'
-            f'{display_name}'
-        )
-
-
-        headers = stream[
-            "headers"
-        ]
-
-
-        if (
-            stream["playback_mode"]
-            == "direct"
-        ):
-
-            user_agent = clean(
-                headers.get(
-                    "User-Agent"
-                )
-            )
-
-            referer = clean(
-                headers.get(
-                    "Referer"
-                )
-            )
-
-
-            if user_agent:
-
-                lines.append(
-                    "#EXTVLCOPT:"
-                    "http-user-agent="
-                    + user_agent
-                )
-
-
-            if referer:
-
-                lines.append(
-                    "#EXTVLCOPT:"
-                    "http-referrer="
-                    + referer
-                )
-
-
-        lines.append(
-            stream["url"]
-        )
-
-
-        status[
-            "generated"
-        ] += 1
-
-        channel_status[
-            "generated"
-        ] += 1
-
-
-    status[
-        "channels"
-    ].append(
-        channel_status
-    )
-
-
-with open(
-    PLAYLIST_FILE,
-    "w",
-    encoding="utf-8"
-) as f:
-
-    f.write(
-        "\n".join(lines)
-        + "\n"
-    )
-
-
-with open(
-    STATUS_FILE,
-    "w",
-    encoding="utf-8"
-) as f:
-
-    json.dump(
-        status,
-        f,
-        indent=2,
-        ensure_ascii=False
-    )
-
-
-print()
-
-print(
-    "========================================"
-)
-
-print(
-    "Generazione completata"
-)
-
-print(
-    f"Stream generati : "
-    f"{status['generated']}"
-)
-
-print(
-    f"Stream saltati  : "
-    f"{status['skipped']}"
-)
-
-print(
-    f"Errori          : "
-    f"{status['errors']}"
-)
-
-print(
-    f"Output          : "
-    f"{PLAYLIST_FILE}"
-)
-
-print(
-    f"Report           : "
-    f"{STATUS_FILE}"
-)
-
-print(
-    "========================================"
-)
+if __name__ == "__main__":
+    main()
