@@ -7,7 +7,11 @@ def resolve(source_url: str) -> dict:
     if parsed.scheme not in ("http", "https"):
         raise ValueError("URL non valido")
 
+    print(f"[TEST_PROVIDER] Risolvo: {source_url}")
+
     return {
         "url": source_url,
-        "headers": {}
+        "headers": {
+            "User-Agent": "EasyProxy-Test/1.0"
+        }
     }
