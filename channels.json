@@ -1,5 +1,6 @@
 {
   "easyproxy_base": "https://bittersun-e0611.app.onebit.ng",
+  "default_proxy": "auto",
 
   "channels": [
     {
@@ -14,6 +15,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -21,11 +23,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Uno",
       "enabled": true,
@@ -38,6 +40,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -45,11 +48,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Calcio",
       "enabled": true,
@@ -62,6 +65,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -69,11 +73,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Tennis",
       "enabled": true,
@@ -86,6 +90,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -93,11 +98,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport F1",
       "enabled": true,
@@ -110,6 +115,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -117,11 +123,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport MotoGP",
       "enabled": true,
@@ -134,6 +140,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -141,11 +148,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Arena",
       "enabled": true,
@@ -158,6 +165,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -165,11 +173,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Max",
       "enabled": true,
@@ -182,6 +190,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -189,11 +198,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Mix",
       "enabled": true,
@@ -206,6 +215,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -213,11 +223,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Basket",
       "enabled": true,
@@ -230,6 +240,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -237,11 +248,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Sky Sport Golf",
       "enabled": true,
@@ -254,6 +265,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -261,11 +273,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Eurosport 1",
       "enabled": true,
@@ -278,6 +290,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -285,11 +298,11 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
     {
       "name": "Eurosport 2",
       "enabled": true,
@@ -302,6 +315,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -309,12 +323,12 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
     },
-
-       {
+    {
       "name": "DAZN 1",
       "enabled": true,
       "group": "DAZN",
@@ -326,6 +340,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         },
         {
@@ -333,6 +348,7 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": ""
         }
       ]
@@ -350,6 +366,7 @@
           "provider": "daddy",
           "priority": 1,
           "enabled": true,
+          "proxy": "auto",
           "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
         },
         {
@@ -357,6 +374,7 @@
           "provider": "cdn",
           "priority": 2,
           "enabled": true,
+          "proxy": "auto",
           "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
         }
       ]
