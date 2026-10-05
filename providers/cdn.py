@@ -11,6 +11,9 @@ def resolve(source_url: str) -> dict:
 
     return {
         "url": source_url,
+        "provider": "CDN",
+        "quality": "HD",
+        "priority": 2,
         "headers": {
             "User-Agent": "EasyProxy-Test/1.0"
         }
