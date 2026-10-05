@@ -154,15 +154,20 @@ for channel in data.get("channels", []):
         key=lambda item: item["priority"]
     )
 
-    for stream in resolved_streams:
-        if stream["url"] in seen_urls:
+            duplicate_key = (
+            name,
+            stream["provider"],
+            stream["url"]
+        )
+
+        if duplicate_key in seen_streams:
             print(
                 f"[DUPLICATE] {name} / "
                 f"{stream['provider']}"
             )
             continue
 
-        seen_urls.add(stream["url"])
+        seen_streams.add(duplicate_key)
 
         proxied_url = (
             f"{base}/proxy/manifest.m3u8?d="
