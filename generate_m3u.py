@@ -17,7 +17,7 @@ for channel in data["channels"]:
 
     resolved_streams = []
 
-            for stream in channel.get("streams", []):
+    for stream in channel.get("streams", []):
         stream_name = stream.get("name", "Stream")
         source = stream.get("url", "").strip()
         provider_name = stream.get("provider")
