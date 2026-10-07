@@ -227,49 +227,46 @@ def main():
                 )
             }
 
-            if not provider_name:
-                print(
-                    f"[ERROR] {channel_name} / "
-                    f"{stream_name}: provider mancante"
-                )
-
-                stream_status["status"] = "error"
-                stream_status["error"] = (
-                    "provider mancante"
-                )
-
-                status["summary"][
-                    "streams_failed"
-                ] += 1
-
-                channel_status["streams"].append(
-                    stream_status
-                )
-
-                continue
-
             try:
                 print(
                     f"[RESOLVE] "
                     f"{channel_name} / "
                     f"{stream_name} / "
-                    f"provider={provider_name} / "
+                    f"provider={provider_name or 'DIRECT'} / "
                     f"url_configured="
                     f"{bool(source_url)}"
                 )
 
-                provider = load_provider(
-                    provider_name
-                )
+                if provider_name:
+                    provider = load_provider(
+                        provider_name
+                    )
 
-                # IMPORTANTE:
-                # il provider riceve sempre channel + stream.
-                # source_url può essere vuoto: il provider può
-                # effettuare discovery dinamico.
-                result = provider.resolve(
-                    channel,
-                    stream
-                )
+                    # IMPORTANTE:
+                    # il provider riceve sempre channel + stream.
+                    # source_url può essere vuoto: il provider può
+                    # effettuare discovery dinamico.
+                    result = provider.resolve(
+                        channel,
+                        stream
+                    )
+                elif source_url:
+                    # URL già configurato: non serve alcun provider.
+                    # Questo consente di usare direttamente una sorgente
+                    # autorizzata/demo senza passare da discovery.
+                    result = {
+                        "url": source_url,
+                        "provider": stream_name or "Direct",
+                        "quality": "HD",
+                        "priority": stream.get("priority", 999),
+                        "proxy": stream.get("proxy", default_proxy),
+                        "proxy_required": False,
+                        "headers": {}
+                    }
+                else:
+                    raise ValueError(
+                        "provider mancante e URL sorgente vuoto"
+                    )
 
                 if not isinstance(result, dict):
                     raise ValueError(
