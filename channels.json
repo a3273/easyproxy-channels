@@ -360,7 +360,8 @@
       "tvg_logo": "",
       "streams": [
         {
-          "name": "Authorized",
+          "name": "Daddy",
+          "provider": "daddy",
           "priority": 1,
           "enabled": true,
           "proxy": "auto",
