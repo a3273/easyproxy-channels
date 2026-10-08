@@ -163,6 +163,8 @@ def get_stream(channel_name: str) -> dict:
         "source": "daddylive",
         "channel_id": cid,
     }
+
+
 def resolve(channel: dict, stream: dict) -> dict:
     """
     Interfaccia richiesta da generate_m3u.py
