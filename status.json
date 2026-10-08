@@ -11,20 +11,20 @@
       "enabled": true,
       "streams": [
         {
-          "name": "",
-          "provider": "",
+          "name": "DaddyLive",
+          "provider": "daddylive",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.daddylive'"
         },
         {
-          "name": "",
-          "provider": "",
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.cdnlivetv'"
         }
       ]
     },
@@ -32,20 +32,20 @@
       "enabled": true,
       "streams": [
         {
-          "name": "",
-          "provider": "",
+          "name": "DaddyLive",
+          "provider": "daddylive",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.daddylive'"
         },
         {
-          "name": "",
-          "provider": "",
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.cdnlivetv'"
         }
       ]
     },
@@ -53,20 +53,20 @@
       "enabled": true,
       "streams": [
         {
-          "name": "",
-          "provider": "",
+          "name": "DaddyLive",
+          "provider": "daddylive",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.daddylive'"
         },
         {
-          "name": "",
-          "provider": "",
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.cdnlivetv'"
         }
       ]
     },
@@ -74,20 +74,20 @@
       "enabled": true,
       "streams": [
         {
-          "name": "",
-          "provider": "",
+          "name": "DaddyLive",
+          "provider": "daddylive",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.daddylive'"
         },
         {
-          "name": "",
-          "provider": "",
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.cdnlivetv'"
         }
       ]
     },
@@ -95,20 +95,20 @@
       "enabled": true,
       "streams": [
         {
-          "name": "",
-          "provider": "",
+          "name": "DaddyLive",
+          "provider": "daddylive",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.daddylive'"
         },
         {
-          "name": "",
-          "provider": "",
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.cdnlivetv'"
         }
       ]
     },
@@ -116,20 +116,20 @@
       "enabled": true,
       "streams": [
         {
-          "name": "",
-          "provider": "",
+          "name": "DaddyLive",
+          "provider": "daddylive",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.daddylive'"
         },
         {
-          "name": "",
-          "provider": "",
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "provider mancante e URL sorgente vuoto"
+          "error": "No module named 'providers.cdnlivetv'"
         }
       ]
     }
