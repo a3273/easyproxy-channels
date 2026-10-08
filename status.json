@@ -12,19 +12,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -33,19 +33,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -54,19 +54,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -75,19 +75,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -96,19 +96,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -117,19 +117,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -138,19 +138,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -159,19 +159,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -180,19 +180,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -201,19 +201,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -222,19 +222,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -243,19 +243,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -264,19 +264,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -285,19 +285,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -306,19 +306,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     },
@@ -327,19 +327,19 @@
       "streams": [
         {
           "name": "DaddyLive",
-          "provider": "daddylive",
+          "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.daddylive'"
+          "error": "DaddyLive: nessun mirror raggiungibile"
         },
         {
           "name": "CDNLiveTV",
-          "provider": "cdnlivetv",
+          "provider": "cdn",
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "No module named 'providers.cdnlivetv'"
+          "error": "CDNLiveTV: non raggiungibile"
         }
       ]
     }
