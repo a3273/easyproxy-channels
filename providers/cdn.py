@@ -7,6 +7,8 @@ import base64
 import logging
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 logger = logging.getLogger(__name__)
 
@@ -16,19 +18,42 @@ PLAYER_BASE = "https://cdnlivetv.tv"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Origin": PLAYER_BASE,
     "Referer": f"{PLAYER_BASE}/",
 }
 
 
+def _get_session() -> requests.Session:
+    """Crea sessione con retry automatico"""
+    s = requests.Session()
+    s.headers.update(HEADERS)
+    
+    retry = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    s.mount("http://", adapter)
+    s.mount("https://", adapter)
+    
+    return s
+
+
 def fetch_channel_list() -> list:
     """Ritorna lista canali dall'API"""
+    session = _get_session()
+    
     for base in (API_BASE, MIRROR):
         try:
-            r = requests.get(
+            r = session.get(
                 f"{base}/api/v1/channels/",
                 params={"user": "cdnlivetv", "plan": "free"},
-                headers=HEADERS,
-                timeout=15,
+                timeout=20,
             )
             r.raise_for_status()
             data = r.json()
@@ -72,12 +97,14 @@ def find_channel(channels: list, query: str) -> dict:
 
 def resolve_stream_url(channel: dict) -> str:
     """Estrai m3u8 dalla pagina player"""
+    session = _get_session()
+    
     player_url = channel.get("url")
     if not player_url:
         name = channel.get("name", "").replace(" ", "%20")
         player_url = f"{PLAYER_BASE}/api/v1/channels/player/?name={name}"
     
-    r = requests.get(player_url, headers=HEADERS, timeout=15)
+    r = session.get(player_url, timeout=20)
     r.raise_for_status()
     html = r.text
     
@@ -112,6 +139,8 @@ def get_stream(channel_name: str) -> dict:
         "source": "cdnlivetv",
         "channel_name": ch.get("name"),
     }
+
+
 def resolve(channel: dict, stream: dict) -> dict:
     """
     Interfaccia richiesta da generate_m3u.py
@@ -128,3 +157,4 @@ def resolve(channel: dict, stream: dict) -> dict:
         "proxy": "auto",
         "proxy_required": False,
     }
+    
