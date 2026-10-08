@@ -1,44 +1,44 @@
-name: Generate M3U
+name: Generate M3U Playlist
 
 on:
-  push:
-    paths:
-      - "channels.json"
-      - "generate_m3u.py"
-      - "providers/**"
-
-  workflow_dispatch:
-
   schedule:
-    - cron: "*/30 * * * *"
-
-permissions:
-  contents: write
-
-concurrency:
-  group: generate-m3u
-  cancel-in-progress: true
+    # Ogni 30 minuti
+    - cron: '*/30 * * * *'
+  workflow_dispatch:  # Permette di lanciarlo manualmente
+  push:
+    branches: [ main ]
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-
+    
     steps:
+      # 1. Scarica il codice del repo
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
+      # 2. Installa Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
-
-      - name: Generate playlist
-        run: python generate_m3u.py
-
-      - name: Commit generated files
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "chore: update playlist and status"
-          file_pattern: |
-            playlist.m3u
-            status.json
+          python-version: '3.11'
+      
+      # 3. Installa dipendenze
+      - name: Install dependencies
+        run: |
+          pip install requests
+      
+      # 4. Genera la playlist
+      - name: Generate M3U
+        run: |
+          python generate_m3u.py
+      
+      # 5. Committa e pusha i risultati
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add output/
+          git add status.json
+          git diff --staged --quiet || git commit -m "Update playlist [skip ci]"
+          git push
