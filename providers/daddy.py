@@ -163,3 +163,19 @@ def get_stream(channel_name: str) -> dict:
         "source": "daddylive",
         "channel_id": cid,
     }
+def resolve(channel: dict, stream: dict) -> dict:
+    """
+    Interfaccia richiesta da generate_m3u.py
+    Riceve channel e stream, ritorna dict con url e metadata.
+    """
+    query = stream.get("query") or channel.get("name", "")
+    result = get_stream(query)
+    
+    return {
+        "url": result["url"],
+        "provider": "DaddyLive",
+        "quality": "HD",
+        "headers": result.get("headers", {}),
+        "proxy": "auto",
+        "proxy_required": False,
+    }
