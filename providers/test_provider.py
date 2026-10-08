@@ -1,37 +1,22 @@
-from urllib.parse import urlparse
+import sys
+sys.path.insert(0, '.')
 
+print("=== TEST DADDYLIVE ===")
+try:
+    from providers.daddy import get_stream
+    s = get_stream('Sky Sport Uno')
+    print("✓ SUCCESS")
+    print("URL:", s['url'][:80] + "...")
+    print("Referer:", s['headers']['Referer'])
+except Exception as e:
+    print("✗ FAILED:", type(e).__name__, str(e))
 
-def resolve(channel: dict, stream: dict) -> dict:
-    source_url = str(
-        stream.get("url", "")
-    ).strip()
-
-    if not source_url:
-        raise ValueError(
-            "URL test mancante"
-        )
-
-    parsed = urlparse(source_url)
-
-    if parsed.scheme not in (
-        "http",
-        "https"
-    ):
-        raise ValueError(
-            "URL test non valido"
-        )
-
-    return {
-        "url": source_url,
-        "provider": "Test",
-        "quality": "HD",
-        "priority": int(
-            stream.get(
-                "priority",
-                1
-            )
-        ),
-        "proxy": "direct",
-        "proxy_required": False,
-        "headers": {}
-    }
+print("\n=== TEST CDNLIVETV ===")
+try:
+    from providers.cdn import get_stream
+    s = get_stream('Sky Sport Uno')
+    print("✓ SUCCESS")
+    print("URL:", s['url'][:80] + "...")
+    print("Referer:", s['headers']['Referer'])
+except Exception as e:
+    print("✗ FAILED:", type(e).__name__, str(e))
