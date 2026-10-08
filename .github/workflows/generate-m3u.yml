@@ -1,4 +1,7 @@
-name: Generate M3U Playlist
+- name: Generate M3U
+        working-directory: ${{ github.workspace }}
+        run: |
+          python generate_m3u.py
 
 on:
   schedule:
