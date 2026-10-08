@@ -1,372 +1,57 @@
 {
-  "easyproxy_base": "https://bittersun-e0611.app.onebit.ng",
-  "default_proxy": "auto",
   "channels": [
     {
       "name": "Sky Sport 24",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport 24",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-24-it.png",
+      "logo": "https://raw.githubusercontent.com/.../skysport24.png",
+      "group": "Sky Sport Italia",
       "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
+        {"source": "daddylive", "priority": 1, "query": "Sky Sport 24 Italy"},
+        {"source": "cdnlivetv", "priority": 2, "query": "Sky Sport 24"}
       ]
     },
     {
       "name": "Sky Sport Uno",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Uno",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-uno-it.png",
+      "logo": "...",
+      "group": "Sky Sport Italia",
       "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
+        {"source": "daddylive", "priority": 1, "query": "Sky Sport Uno Italy"},
+        {"source": "cdnlivetv", "priority": 2, "query": "Sky Sport Uno"}
       ]
     },
     {
       "name": "Sky Sport Calcio",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Calcio",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-calcio-it.png",
+      "logo": "...",
+      "group": "Sky Sport Italia",
       "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport Tennis",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Tennis",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-tennis-it.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport F1",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport F1",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-f1-it.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport MotoGP",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport MotoGP",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-motogp-it.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport Arena",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Arena",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-arena-it.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport Max",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Max",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport Mix",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Mix",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-mix-it.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport Basket",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Basket",
-      "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Sky_Sport_Basket_-_Logo_2026.svg",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Sky Sport Golf",
-      "enabled": true,
-      "group": "Sky Sport",
-      "tvg_id": "Sky Sport Golf",
-      "tvg_logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-golf-it.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Eurosport 1",
-      "enabled": true,
-      "group": "Eurosport",
-      "tvg_id": "Eurosport 1",
-      "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Eurosport_1_Logo_2015.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "name": "Eurosport 2",
-      "enabled": true,
-      "group": "Eurosport",
-      "tvg_id": "Eurosport 2",
-      "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Eurosport_2_Logo_2015.png",
-      "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
+        {"source": "daddylive", "priority": 1, "query": "Sky Sport Calcio Italy"},
+        {"source": "cdnlivetv", "priority": 2, "query": "Sky Sport Calcio"}
       ]
     },
     {
       "name": "DAZN 1",
-      "enabled": true,
-      "group": "DAZN",
-      "tvg_id": "DAZN 1",
-      "tvg_logo": "https://upload.wikimedia.org/wikipedia/commons/1/18/DAZN_1_2024.svg",
+      "logo": "...",
+      "group": "DAZN Italia",
       "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "enabled": true,
-          "proxy": "auto",
-          "url": ""
-        }
+        {"source": "daddylive", "priority": 1, "query": "DAZN ZONA Italy"},
+        {"source": "cdnlivetv", "priority": 2, "query": "DAZN 1"}
       ]
     },
     {
-      "name": "TEST Mux",
-      "enabled": true,
-      "group": "Test",
-      "tvg_id": "TEST Mux",
-      "tvg_logo": "",
+      "name": "Eurosport 1",
+      "logo": "...",
+      "group": "Eurosport",
       "streams": [
-        {
-          "name": "Daddy",
-          "provider": "daddy",
-          "priority": 1,
-          "enabled": true,
-          "proxy": "auto",
-          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
-        }
+        {"source": "daddylive", "priority": 1, "query": "EuroSport 1 Italy"},
+        {"source": "cdnlivetv", "priority": 2, "query": "Eurosport 1"}
+      ]
+    },
+    {
+      "name": "Eurosport 2",
+      "logo": "...",
+      "group": "Eurosport",
+      "streams": [
+        {"source": "daddylive", "priority": 1, "query": "EuroSport 2 Italy"},
+        {"source": "cdnlivetv", "priority": 2, "query": "Eurosport 2"}
       ]
     }
   ]
