@@ -1,242 +1,193 @@
+"""
+DaddyLive provider — scraping nativo della catena:
+  1. https://dlive.sx/24-7-channels.php  → lista canali (regex watch.php?id=N)
+  2. https://dlive.sx/cast/stream-{id}.php  → iframe verso assetrage.net
+  3. https://assetrage.net/e/{token}  → _econfig (base64 scrambled)
+  4. decode _econfig → JSON con stream_url
+"""
+
+import re
+import base64
 import json
-import os
-from urllib.parse import quote, urlparse
-from urllib.request import Request, urlopen
+import logging
+from urllib.parse import urljoin
+
+import requests
+
+logger = logging.getLogger(__name__)
+
+BASE = "https://dlive.sx"
+MIRRORS = ["https://dlive.sx", "https://dlstreams.st"]
+EMBED_BASE = "https://assetrage.net"
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
 
-DEFAULT_TIMEOUT = 20
-
-
-def _clean(value) -> str:
-    return str(value or "").strip()
-
-
-def _validate_url(url: str) -> str:
-    url = _clean(url)
-
-    if not url:
-        raise ValueError("URL vuoto")
-
-    parsed = urlparse(url)
-
-    if parsed.scheme not in ("http", "https"):
-        raise ValueError(f"URL non valido: {url}")
-
-    return url
-
-
-def _request_json(url: str) -> object:
-    request = Request(
-        url,
-        headers={
-            "User-Agent": (
-                "Mozilla/5.0 "
-                "(compatible; ChannelResolver/1.0)"
-            ),
-            "Accept": "application/json,text/plain,*/*",
-        },
-    )
-
-    with urlopen(
-        request,
-        timeout=DEFAULT_TIMEOUT
-    ) as response:
-        body = response.read().decode(
-            "utf-8",
-            errors="replace"
-        )
-
-    try:
-        return json.loads(body)
-    except json.JSONDecodeError as exc:
-        raise ValueError(
-            "La sorgente di discovery non ha restituito JSON valido"
-        ) from exc
-
-
-def _find_channel(data, wanted_name: str):
+def _decode_econfig(encoded: str) -> dict:
     """
-    Cerca ricorsivamente un elemento che corrisponda al nome
-    del canale e che contenga un URL.
-
-    Supporta cataloghi JSON del tipo:
-      [{"name": "...", "url": "..."}]
-      {"channels": [...]}
-      {"items": [...]}
-      {"data": [...]}
-      e strutture annidate.
+    Decodifica _econfig:
+      base64 → split in 4 parti → rimuovi char[3] da ogni parte →
+      riordina [2,0,3,1] → base64 → JSON
     """
+    raw = base64.b64decode(encoded).decode("utf-8", errors="ignore")
+    parts = raw.split("|")  # separatore osservato: potrebbe essere altro
+    if len(parts) != 4:
+        # fallback: prova split su qualsiasi carattere non alfanumerico
+        parts = re.split(r"[^A-Za-z0-9+/=]+", raw)
+    if len(parts) != 4:
+        raise ValueError(f"_econfig: attese 4 parti, trovate {len(parts)}")
 
-    wanted = wanted_name.casefold().strip()
+    cleaned = [p[:3] + p[4:] if len(p) > 3 else p for p in parts]
+    reordered = cleaned[2] + cleaned[0] + cleaned[3] + cleaned[1]
+    decoded = base64.b64decode(reordered).decode("utf-8")
+    return json.loads(decoded)
 
-    def walk(node):
-        if isinstance(node, dict):
 
-            possible_name = _clean(
-                node.get("name")
-                or node.get("title")
-                or node.get("channel_name")
-                or node.get("channel")
+def _get_session() -> requests.Session:
+    s = requests.Session()
+    s.headers.update(HEADERS)
+    return s
+
+
+def fetch_channel_list(session: requests.Session) -> dict[str, int]:
+    """Ritorna {nome_canale: id} dalla pagina 24-7-channels."""
+    for mirror in MIRRORS:
+        try:
+            url = f"{mirror}/24-7-channels.php"
+            r = session.get(url, timeout=15)
+            r.raise_for_status()
+            html = r.text
+
+            # Regex: <a href="watch.php?id=123" ...>Nome Canale</a>
+            pattern = re.compile(
+                r'href=["\']watch\.php\?id=(\d+)["\'][^>]*>([^<]+)',
+                re.IGNORECASE,
             )
-
-            possible_url = _clean(
-                node.get("url")
-                or node.get("stream_url")
-                or node.get("streamUrl")
-                or node.get("m3u8")
-                or node.get("stream")
-            )
-
-            if (
-                possible_name
-                and possible_name.casefold().strip() == wanted
-                and possible_url
-            ):
-                return {
-                    "name": possible_name,
-                    "url": possible_url,
-                    "headers": node.get(
-                        "headers",
-                        {}
-                    ),
-                }
-
-            for value in node.values():
-                result = walk(value)
-
-                if result:
-                    return result
-
-        elif isinstance(node, list):
-
-            for item in node:
-                result = walk(item)
-
-                if result:
-                    return result
-
-        return None
-
-    return walk(data)
+            channels = {}
+            for m in pattern.finditer(html):
+                cid = int(m.group(1))
+                name = m.group(2).strip()
+                if name:
+                    channels[name] = cid
+            if channels:
+                logger.info("Trovati %d canali da %s", len(channels), mirror)
+                return channels
+        except Exception as e:
+            logger.warning("Mirror %s fallito: %s", mirror, e)
+    raise RuntimeError("Nessun mirror DaddyLive raggiungibile")
 
 
-def _discover(channel_name: str, stream: dict) -> dict:
+def find_channel_id(channels: dict[str, int], query: str) -> int | None:
     """
-    Discovery autorizzata.
-
-    Priorità:
-    1. resolver_url nello stream
-    2. DADDY_CATALOG_URL nelle variabili ambiente
+    Cerca l'ID di un canale per nome con normalizzazione.
+    query es. "Sky Sport Uno" → matcha "Sky Sport Uno Italy"
     """
+    q = query.lower().strip()
 
-    resolver_url = _clean(
-        stream.get("resolver_url")
+    # 1. match esatto
+    for name, cid in channels.items():
+        if name.lower() == q:
+            return cid
+
+    # 2. match contenuto (query contenuta nel nome)
+    for name, cid in channels.items():
+        if q in name.lower():
+            return cid
+
+    # 3. match parole (tutte le parole della query nel nome)
+    words = set(q.split())
+    best_score, best_id = 0, None
+    for name, cid in channels.items():
+        name_words = set(name.lower().split())
+        score = len(words & name_words)
+        if score > best_score:
+            best_score, best_id = score, cid
+    if best_score >= max(1, len(words) - 1):
+        return best_id
+
+    return None
+
+
+def resolve_stream_url(channel_id: int, session: requests.Session) -> str:
+    """
+    Catena completa: player page → iframe embed → _econfig → stream_url
+    """
+    # 1. Player page
+    player_url = f"{BASE}/cast/stream-{channel_id}.php"
+    r = session.get(player_url, timeout=15, headers={
+        "Referer": f"{BASE}/watch.php?id={channel_id}",
+    })
+    r.raise_for_status()
+
+    # 2. Estrai iframe assetrage
+    m = re.search(
+        r'iframe[^>]+src=["\'](https?://assetrage\.net/e/[^"\']+)["\']',
+        r.text,
+        re.IGNORECASE,
     )
-
-    catalog_url = _clean(
-        os.getenv("DADDY_CATALOG_URL")
-    )
-
-    endpoint = resolver_url or catalog_url
-
-    if not endpoint:
-        raise ValueError(
-            "Nessuna sorgente di discovery configurata per Daddy. "
-            "Imposta DADDY_CATALOG_URL oppure resolver_url nello stream."
+    if not m:
+        # fallback: qualsiasi iframe
+        m = re.search(
+            r'iframe[^>]+src=["\'](https?://[^"\']+)["\']',
+            r.text,
+            re.IGNORECASE,
         )
+    if not m:
+        raise RuntimeError(f"Nessun iframe trovato in {player_url}")
 
-    discovery_url = (
-        f"{endpoint}"
-        f"{'&' if '?' in endpoint else '?'}"
-        f"channel={quote(channel_name)}"
-    )
+    embed_url = m.group(1)
 
-    data = _request_json(
-        discovery_url
-    )
+    # 3. Fetch embed page
+    r2 = session.get(embed_url, timeout=15, headers={
+        "Referer": player_url,
+        "Origin": BASE,
+    })
+    r2.raise_for_status()
+    embed_html = r2.text
 
-    match = _find_channel(
-        data,
-        channel_name
-    )
+    # 4. Cerca _econfig
+    m2 = re.search(r'_econfig\s*=\s*["\']([^"\']+)["\']', embed_html)
+    if m2:
+        cfg = _decode_econfig(m2.group(1))
+        stream_url = cfg.get("stream_url") or cfg.get("url") or cfg.get("src")
+        if stream_url:
+            return stream_url
 
-    if not match:
-        raise ValueError(
-            f"Canale non trovato nel catalogo Daddy: "
-            f"{channel_name}"
-        )
+    # 5. Fallback: regex diretta m3u8 nell'embed
+    m3 = re.search(r'https?://[^\s"\'<>]+\.m3u8[^\s"\'<>]*', embed_html)
+    if m3:
+        return m3.group(0)
 
-    return match
+    raise RuntimeError(f"Stream URL non trovato per canale {channel_id}")
 
 
-def resolve(channel: dict, stream: dict) -> dict:
+def get_stream(channel_name: str) -> dict:
+    """
+    API pubblica del provider: dato il nome canale, ritorna dict con
+    url, referer, user_agent.
+    """
+    session = _get_session()
+    channels = fetch_channel_list(session)
+    cid = find_channel_id(channels, channel_name)
+    if cid is None:
+        raise ValueError(f"Canale '{channel_name}' non trovato su DaddyLive")
 
-    if not isinstance(channel, dict):
-        raise TypeError(
-            "channel deve essere un dict"
-        )
-
-    if not isinstance(stream, dict):
-        raise TypeError(
-            "stream deve essere un dict"
-        )
-
-    channel_name = _clean(
-        channel.get("name")
-    )
-
-    if not channel_name:
-        raise ValueError(
-            "Nome canale mancante"
-        )
-
-    # URL esplicito, quando disponibile.
-    source_url = _clean(
-        stream.get("url")
-    )
-
-    headers = {}
-
-    if source_url:
-        resolved_url = _validate_url(
-            source_url
-        )
-
-    else:
-        result = _discover(
-            channel_name,
-            stream
-        )
-
-        resolved_url = _validate_url(
-            result.get("url")
-        )
-
-        if isinstance(
-            result.get("headers"),
-            dict
-        ):
-            headers = result["headers"]
-
-    print(
-        f"[DADDY] "
-        f"{channel_name} -> {resolved_url}"
-    )
-
+    url = resolve_stream_url(cid, session)
     return {
-        "url": resolved_url,
-        "provider": "Daddy",
-        "quality": "HD",
-        "priority": int(
-            stream.get(
-                "priority",
-                1
-            )
-        ),
-        "proxy": stream.get(
-            "proxy",
-            "auto"
-        ),
-        "proxy_required": False,
-        "headers": headers,
+        "url": url,
+        "headers": {
+            "Referer": f"{EMBED_BASE}/",
+            "User-Agent": HEADERS["User-Agent"],
+            "Origin": EMBED_BASE,
+        },
+        "source": "daddylive",
+        "channel_id": cid,
     }
