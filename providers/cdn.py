@@ -1,256 +1,122 @@
-import json
-import os
-from urllib.parse import quote, urlparse
-from urllib.request import Request, urlopen
+"""
+CDNLiveTV provider — API JSON pubblica.
+Endpoint: https://api.cdnlivetv.tv/api/v1/channels/?user=cdnlivetv&plan=free
+"""
+
+import re
+import base64
+import logging
+from urllib.parse import urljoin
+
+import requests
+
+logger = logging.getLogger(__name__)
+
+API_BASE = "https://api.cdnlivetv.tv"
+MIRROR = "https://api.cdnlivetv.is"
+PLAYER_BASE = "https://cdnlivetv.tv"
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Referer": f"{PLAYER_BASE}/",
+}
 
 
-DEFAULT_TIMEOUT = 20
-
-
-def _clean(value) -> str:
-    return str(value or "").strip()
-
-
-def _validate_url(url: str) -> str:
-    url = _clean(url)
-
-    if not url:
-        raise ValueError("URL vuoto")
-
-    parsed = urlparse(url)
-
-    if parsed.scheme not in ("http", "https"):
-        raise ValueError(f"URL non valido: {url}")
-
-    return url
-
-
-def _request_json(url: str) -> object:
-    request = Request(
-        url,
-        headers={
-            "User-Agent": (
-                "Mozilla/5.0 "
-                "(compatible; ChannelResolver/1.0)"
-            ),
-            "Accept": "application/json,text/plain,*/*",
-        },
-    )
-
-    with urlopen(
-        request,
-        timeout=DEFAULT_TIMEOUT
-    ) as response:
-        body = response.read().decode(
-            "utf-8",
-            errors="replace"
-        )
-
-    try:
-        return json.loads(body)
-    except json.JSONDecodeError as exc:
-        raise ValueError(
-            "La sorgente di discovery non ha restituito JSON valido"
-        ) from exc
-
-
-def _find_channel(data, wanted_name: str):
-    """
-    Cerca ricorsivamente il canale in un catalogo JSON.
-    """
-
-    wanted = wanted_name.casefold().strip()
-
-    def walk(node):
-
-        if isinstance(node, dict):
-
-            possible_name = _clean(
-                node.get("name")
-                or node.get("title")
-                or node.get("channel_name")
-                or node.get("channel")
+def fetch_channel_list() -> list[dict]:
+    """Ritorna la lista canali dall'API."""
+    for base in (API_BASE, MIRROR):
+        try:
+            r = requests.get(
+                f"{base}/api/v1/channels/",
+                params={"user": "cdnlivetv", "plan": "free"},
+                headers=HEADERS,
+                timeout=15,
             )
-
-            possible_url = _clean(
-                node.get("url")
-                or node.get("stream_url")
-                or node.get("streamUrl")
-                or node.get("m3u8")
-                or node.get("stream")
-            )
-
-            status = _clean(
-                node.get("status")
-            ).casefold()
-
-            # Se il catalogo fornisce lo stato,
-            # preferiamo i canali online.
-            online_ok = (
-                not status
-                or status in {
-                    "online",
-                    "live",
-                    "active",
-                    "available"
-                }
-            )
-
-            if (
-                possible_name
-                and possible_name.casefold().strip() == wanted
-                and possible_url
-                and online_ok
-            ):
-                return {
-                    "name": possible_name,
-                    "url": possible_url,
-                    "headers": node.get(
-                        "headers",
-                        {}
-                    ),
-                }
-
-            for value in node.values():
-
-                result = walk(value)
-
-                if result:
-                    return result
-
-        elif isinstance(node, list):
-
-            for item in node:
-
-                result = walk(item)
-
-                if result:
-                    return result
-
-        return None
-
-    return walk(data)
+            r.raise_for_status()
+            data = r.json()
+            if isinstance(data, list) and data:
+                logger.info("CDNLiveTV: %d canali", len(data))
+                return data
+        except Exception as e:
+            logger.warning("CDNLiveTV mirror %s fallito: %s", base, e)
+    raise RuntimeError("CDNLiveTV non raggiungibile")
 
 
-def _discover(channel_name: str, stream: dict) -> dict:
+def find_channel(channels: list[dict], query: str) -> dict | None:
+    """Cerca canale per nome (match flessibile)."""
+    q = query.lower().strip()
+
+    for ch in channels:
+        name = (ch.get("name") or "").lower()
+        if name == q:
+            return ch
+
+    for ch in channels:
+        name = (ch.get("name") or "").lower()
+        if q in name:
+            return ch
+
+    words = set(q.split())
+    best_score, best = 0, None
+    for ch in channels:
+        name_words = set((ch.get("name") or "").lower().split())
+        score = len(words & name_words)
+        if score > best_score:
+            best_score, best = score, ch
+    return best if best_score >= max(1, len(words) - 1) else None
+
+
+def resolve_stream_url(channel: dict) -> str:
     """
-    Discovery autorizzata.
-
-    Priorità:
-    1. resolver_url nello stream
-    2. CDN_CATALOG_URL nelle variabili ambiente
+    Dato il dict canale, fetcha la pagina player ed estrae l'm3u8.
+    La pagina player contiene base64 concatenato o regex diretta.
     """
+    player_url = channel.get("url")
+    if not player_url:
+        # costruisci: /api/v1/channels/player/?name=ESPN&code=us&...
+        name = channel.get("name", "").replace(" ", "%20")
+        player_url = f"{PLAYER_BASE}/api/v1/channels/player/?name={name}"
 
-    resolver_url = _clean(
-        stream.get("resolver_url")
-    )
+    r = requests.get(player_url, headers=HEADERS, timeout=15)
+    r.raise_for_status()
+    html = r.text
 
-    catalog_url = _clean(
-        os.getenv("CDN_CATALOG_URL")
-    )
-
-    endpoint = resolver_url or catalog_url
-
-    if not endpoint:
-        raise ValueError(
-            "Nessuna sorgente di discovery configurata per CDNLiveTV. "
-            "Imposta CDN_CATALOG_URL oppure resolver_url nello stream."
+    # 1. Prova base64 concatenato: atob(...) + atob(...)
+    b64_parts = re.findall(r'atob\(["\']([^"\']+)["\']\)', html)
+    if b64_parts:
+        decoded = "".join(
+            base64.b64decode(p).decode("utf-8", errors="ignore")
+            for p in b64_parts
         )
+        m = re.search(r'https?://[^\s"\'<>]+\.m3u8[^\s"\'<>]*', decoded)
+        if m:
+            return m.group(0)
 
-    discovery_url = (
-        f"{endpoint}"
-        f"{'&' if '?' in endpoint else '?'}"
-        f"channel={quote(channel_name)}"
-    )
+    # 2. Fallback: regex diretta
+    m = re.search(r'https?://[^\s"\'<>]+\.m3u8[^\s"\'<>]*', html)
+    if m:
+        return m.group(0)
 
-    data = _request_json(
-        discovery_url
-    )
-
-    match = _find_channel(
-        data,
-        channel_name
-    )
-
-    if not match:
-        raise ValueError(
-            f"Canale non trovato nel catalogo CDN: "
-            f"{channel_name}"
-        )
-
-    return match
+    raise RuntimeError(f"m3u8 non trovato per {channel.get('name')}")
 
 
-def resolve(channel: dict, stream: dict) -> dict:
+def get_stream(channel_name: str) -> dict:
+    channels = fetch_channel_list()
+    ch = find_channel(channels, channel_name)
+    if not ch:
+        raise ValueError(f"Canale '{channel_name}' non trovato su CDNLiveTV")
 
-    if not isinstance(channel, dict):
-        raise TypeError(
-            "channel deve essere un dict"
-        )
-
-    if not isinstance(stream, dict):
-        raise TypeError(
-            "stream deve essere un dict"
-        )
-
-    channel_name = _clean(
-        channel.get("name")
-    )
-
-    if not channel_name:
-        raise ValueError(
-            "Nome canale mancante"
-        )
-
-    # URL esplicito, quando disponibile.
-    source_url = _clean(
-        stream.get("url")
-    )
-
-    headers = {}
-
-    if source_url:
-
-        resolved_url = _validate_url(
-            source_url
-        )
-
-    else:
-
-        result = _discover(
-            channel_name,
-            stream
-        )
-
-        resolved_url = _validate_url(
-            result.get("url")
-        )
-
-        if isinstance(
-            result.get("headers"),
-            dict
-        ):
-            headers = result["headers"]
-
-    print(
-        f"[CDNLIVETV] "
-        f"{channel_name} -> {resolved_url}"
-    )
-
+    url = resolve_stream_url(ch)
     return {
-        "url": resolved_url,
-        "provider": "CDNLiveTV",
-        "quality": "HD",
-        "priority": int(
-            stream.get(
-                "priority",
-                2
-            )
-        ),
-        "proxy": stream.get(
-            "proxy",
-            "auto"
-        ),
-        "proxy_required": False,
-        "headers": headers,
+        "url": url,
+        "headers": {
+            "Referer": f"{PLAYER_BASE}/",
+            "User-Agent": HEADERS["User-Agent"],
+        },
+        "source": "cdnlivetv",
+        "channel_name": ch.get("name"),
     }
