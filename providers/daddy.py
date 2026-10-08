@@ -10,6 +10,8 @@ import logging
 from urllib.parse import urljoin
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 logger = logging.getLogger(__name__)
 
@@ -19,8 +21,16 @@ EMBED_BASE = "https://assetrage.net"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Cache-Control": "max-age=0",
 }
 
 
@@ -47,8 +57,19 @@ def _decode_econfig(encoded: str) -> dict:
 
 
 def _get_session() -> requests.Session:
+    """Crea sessione con retry automatico"""
     s = requests.Session()
     s.headers.update(HEADERS)
+    
+    retry = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    s.mount("http://", adapter)
+    s.mount("https://", adapter)
+    
     return s
 
 
@@ -57,7 +78,7 @@ def fetch_channel_list(session: requests.Session) -> dict:
     for mirror in MIRRORS:
         try:
             url = f"{mirror}/24-7-channels.php"
-            r = session.get(url, timeout=15)
+            r = session.get(url, timeout=20)
             r.raise_for_status()
             html = r.text
             
@@ -113,7 +134,7 @@ def resolve_stream_url(channel_id: int, session: requests.Session) -> str:
     
     # 1. Player page
     player_url = f"{BASE}/cast/stream-{channel_id}.php"
-    r = session.get(player_url, timeout=15, headers={"Referer": f"{BASE}/watch.php?id={channel_id}"})
+    r = session.get(player_url, timeout=20, headers={"Referer": f"{BASE}/watch.php?id={channel_id}"})
     r.raise_for_status()
     
     # 2. Estrai iframe assetrage
@@ -126,7 +147,7 @@ def resolve_stream_url(channel_id: int, session: requests.Session) -> str:
     embed_url = m.group(1)
     
     # 3. Fetch embed
-    r2 = session.get(embed_url, timeout=15, headers={"Referer": player_url, "Origin": BASE})
+    r2 = session.get(embed_url, timeout=20, headers={"Referer": player_url, "Origin": BASE})
     r2.raise_for_status()
     embed_html = r2.text
     
