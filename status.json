@@ -1,10 +1,10 @@
 {
   "summary": {
-    "channels_total": 6,
-    "channels_enabled": 6,
-    "streams_total": 12,
+    "channels_total": 16,
+    "channels_enabled": 16,
+    "streams_total": 32,
     "streams_generated": 0,
-    "streams_failed": 12
+    "streams_failed": 32
   },
   "channels": {
     "Sky Sport 24": {
@@ -70,7 +70,217 @@
         }
       ]
     },
+    "Sky Sport Tennis": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport Arena": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport Basket": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport Max": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport F1": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport MotoGP": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport Golf": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport Legend": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "Sky Sport Mix": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
     "DAZN 1": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddylive",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.daddylive'"
+        },
+        {
+          "name": "CDNLiveTV",
+          "provider": "cdnlivetv",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "No module named 'providers.cdnlivetv'"
+        }
+      ]
+    },
+    "DAZN 2": {
       "enabled": true,
       "streams": [
         {
