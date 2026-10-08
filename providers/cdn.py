@@ -1,10 +1,12 @@
 """
-CDNLiveTV provider - API JSON pubblica
+CDNLiveTV provider - API JSON via proxy
 """
 
 import re
 import base64
 import logging
+import os
+from urllib.parse import quote
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -25,6 +27,17 @@ HEADERS = {
     "Origin": PLAYER_BASE,
     "Referer": f"{PLAYER_BASE}/",
 }
+
+
+def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Response:
+    """Passa la richiesta attraverso EasyProxy per evitare blocchi IP GitHub"""
+    easyproxy_base = os.environ.get("EASYPROXY_BASE", "").rstrip("/")
+    
+    if easyproxy_base:
+        proxy_url = f"{easyproxy_base}/proxy?d={quote(url, safe='')}"
+        return session.get(proxy_url, **kwargs)
+    else:
+        return session.get(url, **kwargs)
 
 
 def _get_session() -> requests.Session:
@@ -50,11 +63,8 @@ def fetch_channel_list() -> list:
     
     for base in (API_BASE, MIRROR):
         try:
-            r = session.get(
-                f"{base}/api/v1/channels/",
-                params={"user": "cdnlivetv", "plan": "free"},
-                timeout=20,
-            )
+            url = f"{base}/api/v1/channels/?user=cdnlivetv&plan=free"
+            r = _proxied_get(session, url, timeout=30)
             r.raise_for_status()
             data = r.json()
             if isinstance(data, list) and data:
@@ -70,17 +80,14 @@ def find_channel(channels: list, query: str) -> dict:
     """Cerca canale per nome con match flessibile"""
     q = query.lower().strip()
     
-    # 1. Match esatto
     for ch in channels:
         if (ch.get("name") or "").lower() == q:
             return ch
     
-    # 2. Query contenuta nel nome
     for ch in channels:
         if q in (ch.get("name") or "").lower():
             return ch
     
-    # 3. Match parole
     words = set(q.split())
     best_score, best = 0, None
     for ch in channels:
@@ -104,11 +111,10 @@ def resolve_stream_url(channel: dict) -> str:
         name = channel.get("name", "").replace(" ", "%20")
         player_url = f"{PLAYER_BASE}/api/v1/channels/player/?name={name}"
     
-    r = session.get(player_url, timeout=20)
+    r = _proxied_get(session, player_url, timeout=30)
     r.raise_for_status()
     html = r.text
     
-    # 1. Base64 concatenato: atob(...) + atob(...)
     b64_parts = re.findall(r'atob\(["\']([^"\']+)["\']\)', html)
     if b64_parts:
         decoded = "".join(base64.b64decode(p).decode("utf-8", errors="ignore") for p in b64_parts)
@@ -116,7 +122,6 @@ def resolve_stream_url(channel: dict) -> str:
         if m:
             return m.group(0)
     
-    # 2. Fallback: regex diretta
     m = re.search(r'https?://[^\s"\'<>]+\.m3u8[^\s"\'<>]*', html)
     if m:
         return m.group(0)
@@ -142,10 +147,7 @@ def get_stream(channel_name: str) -> dict:
 
 
 def resolve(channel: dict, stream: dict) -> dict:
-    """
-    Interfaccia richiesta da generate_m3u.py
-    Riceve channel e stream, ritorna dict con url e metadata.
-    """
+    """Interfaccia richiesta da generate_m3u.py"""
     query = stream.get("query") or channel.get("name", "")
     result = get_stream(query)
     
