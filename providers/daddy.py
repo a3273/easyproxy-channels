@@ -39,10 +39,14 @@ def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Resp
     """Passa la richiesta attraverso EasyProxy per evitare blocchi IP GitHub"""
     easyproxy_base = os.environ.get("EASYPROXY_BASE", "").rstrip("/")
     
+    logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
+    
     if easyproxy_base:
         proxy_url = f"{easyproxy_base}/proxy?d={quote(url, safe='')}"
+        logger.info("Proxy URL: %s", proxy_url)
         return session.get(proxy_url, **kwargs)
     else:
+        logger.info("Direct URL: %s", url)
         return session.get(url, **kwargs)
 
 
@@ -89,6 +93,7 @@ def fetch_channel_list(session: requests.Session) -> dict:
         try:
             url = f"{mirror}/24-7-channels.php"
             r = _proxied_get(session, url, timeout=30)
+            logger.info("Risposta da %s: status=%d, length=%d", mirror, r.status_code, len(r.text))
             r.raise_for_status()
             html = r.text
             
@@ -103,6 +108,9 @@ def fetch_channel_list(session: requests.Session) -> dict:
             if channels:
                 logger.info("DaddyLive: trovati %d canali da %s", len(channels), mirror)
                 return channels
+            else:
+                logger.warning("DaddyLive: nessun canale trovato in %s (HTML length: %d)", mirror, len(html))
+                logger.debug("HTML preview: %s", html[:500])
         except Exception as e:
             logger.warning("DaddyLive mirror %s fallito: %s", mirror, e)
     
