@@ -1,0 +1,137 @@
+{
+  "summary": {
+    "channels_total": 6,
+    "channels_enabled": 6,
+    "streams_total": 12,
+    "streams_generated": 0,
+    "streams_failed": 12
+  },
+  "channels": {
+    "Sky Sport 24": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "",
+          "provider": "",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        },
+        {
+          "name": "",
+          "provider": "",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        }
+      ]
+    },
+    "Sky Sport Uno": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "",
+          "provider": "",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        },
+        {
+          "name": "",
+          "provider": "",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        }
+      ]
+    },
+    "Sky Sport Calcio": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "",
+          "provider": "",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        },
+        {
+          "name": "",
+          "provider": "",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        }
+      ]
+    },
+    "DAZN 1": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "",
+          "provider": "",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        },
+        {
+          "name": "",
+          "provider": "",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        }
+      ]
+    },
+    "Eurosport 1": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "",
+          "provider": "",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        },
+        {
+          "name": "",
+          "provider": "",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        }
+      ]
+    },
+    "Eurosport 2": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "",
+          "provider": "",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        },
+        {
+          "name": "",
+          "provider": "",
+          "priority": 2,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "provider mancante e URL sorgente vuoto"
+        }
+      ]
+    }
+  }
+}
