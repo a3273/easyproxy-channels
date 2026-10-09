@@ -32,23 +32,35 @@ jobs:
       - name: Create output directory
         run: mkdir -p output
 
+      - name: Clear Python cache
+        run: |
+          find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+          find . -name "*.pyc" -delete 2>/dev/null || true
+
       - name: Generate M3U
         env:
           EASYPROXY_BASE: ${{ secrets.EASYPROXY_BASE }}
-        run: python generate_m3u.py
+        run: python -B generate_m3u.py
 
       - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # Resetta status.json per evitare conflitti
-          git checkout origin/main -- status.json 2>/dev/null || true
+          # Debug: mostra cosa esiste
+          echo "=== File in directory ==="
+          ls -la
+          echo "=== File in output/ ==="
+          ls -la output/ 2>/dev/null || echo "output/ non esiste"
           
-          git add output/ status.json 2>/dev/null || true
+          # Forza add dei file generati
+          git add -f playlist.m3u status.json output/ 2>/dev/null || true
+          
+          # Debug: mostra cosa è staged
+          echo "=== Staged files ==="
+          git diff --staged --name-only
+          
+          # Commit e push
           git diff --staged --quiet || git commit -m "Update playlist [skip ci]"
-          
-          # Push con retry in caso di conflitto
           git pull --rebase --autostash || true
           git push || (git pull --rebase --autostash && git push)
-          
