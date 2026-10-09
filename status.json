@@ -7,7 +7,7 @@
     "streams_failed": 0
   },
   "channels": {
-    "Sky Sport 24": {
+    "Sky Sport 24 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -22,7 +22,7 @@
         }
       ]
     },
-    "Sky Sport Uno": {
+    "Sky Sport Uno Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -37,7 +37,7 @@
         }
       ]
     },
-    "Sky Sport Calcio": {
+    "Sky Sport Calcio Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -52,7 +52,7 @@
         }
       ]
     },
-    "Sky Sport Tennis": {
+    "Sky Sport Tennis Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -67,7 +67,7 @@
         }
       ]
     },
-    "Sky Sport Arena": {
+    "Sky Sport Arena Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -82,7 +82,7 @@
         }
       ]
     },
-    "Sky Sport Basket": {
+    "Sky Sport Basket Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -97,7 +97,7 @@
         }
       ]
     },
-    "Sky Sport Max": {
+    "Sky Sport Max Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -112,7 +112,7 @@
         }
       ]
     },
-    "Sky Sport F1": {
+    "Sky Sport F1 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -127,7 +127,7 @@
         }
       ]
     },
-    "Sky Sport MotoGP": {
+    "Sky Sport MotoGP Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -142,7 +142,7 @@
         }
       ]
     },
-    "Sky Sport Golf": {
+    "Sky Sport Golf Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -157,7 +157,7 @@
         }
       ]
     },
-    "Sky Sport 251": {
+    "Sky Sport 251 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -172,7 +172,7 @@
         }
       ]
     },
-    "Sky Sport 252": {
+    "Sky Sport 252 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -187,7 +187,7 @@
         }
       ]
     },
-    "Sky Sport 253": {
+    "Sky Sport 253 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -202,7 +202,7 @@
         }
       ]
     },
-    "Sky Sport 254": {
+    "Sky Sport 254 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -217,7 +217,7 @@
         }
       ]
     },
-    "DAZN 1": {
+    "DAZN 1 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -232,7 +232,7 @@
         }
       ]
     },
-    "Eurosport 1": {
+    "Eurosport 1 Daddy": {
       "enabled": true,
       "streams": [
         {
@@ -247,7 +247,7 @@
         }
       ]
     },
-    "Eurosport 2": {
+    "Eurosport 2 Daddy": {
       "enabled": true,
       "streams": [
         {
