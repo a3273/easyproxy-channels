@@ -36,8 +36,10 @@ def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Resp
     logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
     
     if easyproxy_base:
-        proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={quote(url, safe='')}"
-        logger.info("Proxy URL: %s", proxy_url)
+        # Codifica completamente la URL, inclusi ? e &
+        encoded_url = quote(url, safe='')
+        proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={encoded_url}"
+        logger.info("Proxy URL: %s", proxy_url[:100] + "...")
         return session.get(proxy_url, **kwargs)
     else:
         logger.info("Direct URL: %s", url)
@@ -69,12 +71,20 @@ def fetch_channel_list() -> list:
         try:
             url = f"{base}/api/v1/channels/?user=cdnlivetv&plan=free"
             r = _proxied_get(session, url, timeout=30)
-            logger.info("Risposta da %s: status=%d, length=%d", base, r.status_code, len(r.text))
-            r.raise_for_status()
-            data = r.json()
-            if isinstance(data, list) and data:
-                logger.info("CDNLiveTV: %d canali", len(data))
-                return data
+            logger.info("Risposta da %s: status=%d, length=%d, content-type=%s", 
+                       base, r.status_code, len(r.text), r.headers.get('content-type', 'unknown'))
+            
+            # Prova a parsare come JSON
+            try:
+                data = r.json()
+                if isinstance(data, list) and data:
+                    logger.info("CDNLiveTV: %d canali", len(data))
+                    return data
+            except ValueError:
+                # Non è JSON, potrebbe essere HTML o errore
+                logger.warning("CDNLiveTV: risposta non-JSON da %s", base)
+                logger.debug("Content preview: %s", r.text[:200])
+                
         except Exception as e:
             logger.warning("CDNLiveTV mirror %s fallito: %s", base, e)
     
@@ -164,3 +174,4 @@ def resolve(channel: dict, stream: dict) -> dict:
         "proxy": "auto",
         "proxy_required": False,
     }
+    
