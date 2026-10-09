@@ -1,5 +1,5 @@
 """
-DaddyLive provider - scraping nativo via proxy
+DaddyLive provider - scraping nativo via EasyProxy
 Catena: 24-7-channels.php → cast/stream-{id}.php → assetrage.net/e/{token} → _econfig
 """
 
@@ -42,7 +42,7 @@ def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Resp
     logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
     
     if easyproxy_base:
-        proxy_url = f"{easyproxy_base}/proxy?d={quote(url, safe='')}"
+        proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={quote(url, safe='')}"
         logger.info("Proxy URL: %s", proxy_url)
         return session.get(proxy_url, **kwargs)
     else:
@@ -109,8 +109,7 @@ def fetch_channel_list(session: requests.Session) -> dict:
                 logger.info("DaddyLive: trovati %d canali da %s", len(channels), mirror)
                 return channels
             else:
-                logger.warning("DaddyLive: nessun canale trovato in %s (HTML length: %d)", mirror, len(html))
-                logger.debug("HTML preview: %s", html[:500])
+                logger.warning("DaddyLive: nessun canale trovato in %s", mirror)
         except Exception as e:
             logger.warning("DaddyLive mirror %s fallito: %s", mirror, e)
     
@@ -208,4 +207,3 @@ def resolve(channel: dict, stream: dict) -> dict:
         "proxy": "auto",
         "proxy_required": False,
     }
-    
