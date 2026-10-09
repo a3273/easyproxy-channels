@@ -1,5 +1,5 @@
 """
-CDNLiveTV provider - API JSON via proxy
+CDNLiveTV provider - API JSON via EasyProxy
 """
 
 import re
@@ -33,10 +33,14 @@ def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Resp
     """Passa la richiesta attraverso EasyProxy per evitare blocchi IP GitHub"""
     easyproxy_base = os.environ.get("EASYPROXY_BASE", "").rstrip("/")
     
+    logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
+    
     if easyproxy_base:
-        proxy_url = f"{easyproxy_base}/proxy?d={quote(url, safe='')}"
+        proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={quote(url, safe='')}"
+        logger.info("Proxy URL: %s", proxy_url)
         return session.get(proxy_url, **kwargs)
     else:
+        logger.info("Direct URL: %s", url)
         return session.get(url, **kwargs)
 
 
@@ -65,6 +69,7 @@ def fetch_channel_list() -> list:
         try:
             url = f"{base}/api/v1/channels/?user=cdnlivetv&plan=free"
             r = _proxied_get(session, url, timeout=30)
+            logger.info("Risposta da %s: status=%d, length=%d", base, r.status_code, len(r.text))
             r.raise_for_status()
             data = r.json()
             if isinstance(data, list) and data:
@@ -159,4 +164,3 @@ def resolve(channel: dict, stream: dict) -> dict:
         "proxy": "auto",
         "proxy_required": False,
     }
-    
