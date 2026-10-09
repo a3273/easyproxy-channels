@@ -1,6 +1,5 @@
 """
 DaddyLive provider - EasyProxy risolve automaticamente lo stream
-La pagina player ritorna direttamente una playlist M3U8 proxata
 """
 
 import re
@@ -17,12 +16,14 @@ logger = logging.getLogger(__name__)
 BASE = "https://dlive.sx"
 MIRRORS = ["https://dlive.sx", "https://dlstreams.st"]
 
-
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
 }
+
+# CACHE: lista canali caricata una sola volta
+_channel_cache = None
 
 
 def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Response:
@@ -49,6 +50,13 @@ def _get_session() -> requests.Session:
 
 def fetch_channel_list(session: requests.Session) -> dict:
     """Ritorna {nome_canale: id} dalla pagina 24-7-channels"""
+    global _channel_cache
+    
+    # Usa cache se disponibile
+    if _channel_cache is not None:
+        logger.info("DaddyLive: usando cache canali (%d canali)", len(_channel_cache))
+        return _channel_cache
+    
     for mirror in MIRRORS:
         try:
             url = f"{mirror}/24-7-channels.php"
@@ -70,6 +78,7 @@ def fetch_channel_list(session: requests.Session) -> dict:
             
             if channels:
                 logger.info("DaddyLive: trovati %d canali", len(channels))
+                _channel_cache = channels  # Salva in cache
                 return channels
         except Exception as e:
             logger.warning("DaddyLive mirror %s fallito: %s", mirror, e)
@@ -104,15 +113,11 @@ def find_channel_id(channels: dict, query: str) -> int:
 
 
 def get_stream(channel_name: str) -> dict:
-    """
-    API pubblica: dato nome canale, ritorna url + headers.
-    EasyProxy risolve automaticamente la catena e ritorna M3U8.
-    """
+    """API pubblica: dato nome canale, ritorna url + headers"""
     session = _get_session()
     channels = fetch_channel_list(session)
     cid = find_channel_id(channels, channel_name)
     
-    # Costruisci URL del player proxato da EasyProxy
     easyproxy_base = os.environ.get("EASYPROXY_BASE", "").rstrip("/")
     player_url = f"{BASE}/cast/stream-{cid}.php"
     
@@ -146,3 +151,4 @@ def resolve(channel: dict, stream: dict) -> dict:
         "proxy": "auto",
         "proxy_required": False,
     }
+    
