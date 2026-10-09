@@ -3,8 +3,8 @@
     "channels_total": 17,
     "channels_enabled": 17,
     "streams_total": 17,
-    "streams_generated": 0,
-    "streams_failed": 17
+    "streams_generated": 17,
+    "streams_failed": 0
   },
   "channels": {
     "Sky Sport 24": {
@@ -15,8 +15,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-869.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-869.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-869.php"
         }
       ]
     },
@@ -28,8 +30,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-461.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-461.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-461.php"
         }
       ]
     },
@@ -41,8 +45,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-870.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-870.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-870.php"
         }
       ]
     },
@@ -54,8 +60,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-576.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-576.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-576.php"
         }
       ]
     },
@@ -67,8 +75,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-462.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-462.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-462.php"
         }
       ]
     },
@@ -80,8 +90,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-875.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-875.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-875.php"
         }
       ]
     },
@@ -93,8 +105,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-460.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-460.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-460.php"
         }
       ]
     },
@@ -106,8 +120,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-577.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-577.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-577.php"
         }
       ]
     },
@@ -119,8 +135,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-575.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-575.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-575.php"
         }
       ]
     },
@@ -132,8 +150,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-574.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-574.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-574.php"
         }
       ]
     },
@@ -145,8 +165,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-871.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-871.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-871.php"
         }
       ]
     },
@@ -158,8 +180,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-872.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-872.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-872.php"
         }
       ]
     },
@@ -171,8 +195,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-873.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-873.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-873.php"
         }
       ]
     },
@@ -184,8 +210,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun player trovato per canale 874"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-874.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-874.php"
         }
       ]
     },
@@ -197,8 +225,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-877.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-877.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-877.php"
         }
       ]
     },
@@ -210,8 +240,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-878.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-878.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-878.php"
         }
       ]
     },
@@ -223,8 +255,10 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-879.php"
+          "status": "resolved",
+          "mode": "direct",
+          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-879.php",
+          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-879.php"
         }
       ]
     }
