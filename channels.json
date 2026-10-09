@@ -81,32 +81,32 @@
       ]
     },
     {
-      "name": "Sky Calcio 1",
-      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-1-it.png",
+      "name": "Sky Sport 251",
+      "logo": "https://iili.io/dH9SdOX.png",
       "group": "Italy",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Calcio 1 (251) Italy", "url": ""}
       ]
     },
     {
-      "name": "Sky Calcio 2",
-      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-2-it.png",
+      "name": "Sky Sport 252",
+      "logo": "https://iili.io/dH9SJRt.png",
       "group": "Italy",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Calcio 2 (252) Italy", "url": ""}
       ]
     },
     {
-      "name": "Sky Calcio 3",
-      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-3-it.png",
+      "name": "Sky Sport 253",
+      "logo": "https://iili.io/dH9SHJI.png",
       "group": "Italy",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Calcio 3 (253) Italy", "url": ""}
       ]
     },
     {
-      "name": "Sky Calcio 4",
-      "logo": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-4-it.png",
+      "name": "Sky Sport 254",
+      "logo": "https://iili.io/dH98yUN.png",
       "group": "Italy",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Calcio 4 (254) Italy", "url": ""}
