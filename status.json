@@ -1,10 +1,10 @@
 {
   "summary": {
-    "channels_total": 16,
-    "channels_enabled": 16,
-    "streams_total": 32,
+    "channels_total": 17,
+    "channels_enabled": 17,
+    "streams_total": 17,
     "streams_generated": 0,
-    "streams_failed": 32
+    "streams_failed": 17
   },
   "channels": {
     "Sky Sport 24": {
@@ -17,14 +17,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-869.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport 24 Italy' non trovato"
         }
       ]
     },
@@ -38,14 +30,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-461.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport Uno Italy' non trovato"
         }
       ]
     },
@@ -59,14 +43,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-870.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport Calcio Italy' non trovato"
         }
       ]
     },
@@ -80,14 +56,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-576.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Tennis"
         }
       ]
     },
@@ -101,14 +69,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-462.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport Arena Italy' non trovato"
         }
       ]
     },
@@ -122,14 +82,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-875.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport Basket Italy' non trovato"
         }
       ]
     },
@@ -143,14 +95,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-460.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Max"
         }
       ]
     },
@@ -164,14 +108,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-577.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport F1 Italy' non trovato"
         }
       ]
     },
@@ -185,14 +121,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-575.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport MotoGP Italy' non trovato"
         }
       ]
     },
@@ -206,18 +134,10 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-574.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Golf"
         }
       ]
     },
-    "Sky Sport Legend": {
+    "Sky Calcio 1": {
       "enabled": true,
       "streams": [
         {
@@ -226,19 +146,11 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-575.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Sky Sport Legend Italy' non trovato"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-871.php"
         }
       ]
     },
-    "Sky Sport Mix": {
+    "Sky Calcio 2": {
       "enabled": true,
       "streams": [
         {
@@ -247,15 +159,33 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-575.php"
-        },
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-872.php"
+        }
+      ]
+    },
+    "Sky Calcio 3": {
+      "enabled": true,
+      "streams": [
         {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
+          "name": "DaddyLive",
+          "provider": "daddy",
+          "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Mix"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-873.php"
+        }
+      ]
+    },
+    "Sky Calcio 4": {
+      "enabled": true,
+      "streams": [
+        {
+          "name": "DaddyLive",
+          "provider": "daddy",
+          "priority": 1,
+          "source_url_configured": false,
+          "status": "error",
+          "error": "DaddyLive: nessun player trovato per canale 874"
         }
       ]
     },
@@ -268,36 +198,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-877.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: m3u8 non trovato per DAZN 1"
-        }
-      ]
-    },
-    "DAZN 2": {
-      "enabled": true,
-      "streams": [
-        {
-          "name": "DaddyLive",
-          "provider": "daddy",
-          "priority": 1,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-427.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: m3u8 non trovato per DAZN 2"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/stream/stream-877.php"
         }
       ]
     },
@@ -311,14 +212,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-878.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Eurosport 1 Italy' non trovato"
         }
       ]
     },
@@ -332,14 +225,6 @@
           "source_url_configured": false,
           "status": "error",
           "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-879.php"
-        },
-        {
-          "name": "CDNLiveTV",
-          "provider": "cdn",
-          "priority": 2,
-          "source_url_configured": false,
-          "status": "error",
-          "error": "CDNLiveTV: canale 'Eurosport 2 Italy' non trovato"
         }
       ]
     }
