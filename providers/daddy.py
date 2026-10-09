@@ -42,8 +42,10 @@ def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Resp
     logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
     
     if easyproxy_base:
-        proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={quote(url, safe='')}"
-        logger.info("Proxy URL: %s", proxy_url)
+        # Codifica completamente la URL, inclusi ? e &
+        encoded_url = quote(url, safe='')
+        proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={encoded_url}"
+        logger.info("Proxy URL: %s", proxy_url[:100] + "...")
         return session.get(proxy_url, **kwargs)
     else:
         logger.info("Direct URL: %s", url)
@@ -207,3 +209,4 @@ def resolve(channel: dict, stream: dict) -> dict:
         "proxy": "auto",
         "proxy_required": False,
     }
+    
