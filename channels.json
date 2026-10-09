@@ -6,7 +6,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport 24 Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport 24", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport 24 Italy", "url": ""}
       ]
     },
     {
@@ -15,7 +15,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport Uno Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Uno", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Uno Italy", "url": ""}
       ]
     },
     {
@@ -24,7 +24,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport Calcio Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Calcio", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Calcio Italy", "url": ""}
       ]
     },
     {
@@ -33,7 +33,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport Tennis Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Tennis", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Tennis Italy", "url": ""}
       ]
     },
     {
@@ -42,7 +42,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport Arena Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Arena", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Arena Italy", "url": ""}
       ]
     },
     {
@@ -51,7 +51,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport Basket Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Basket", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Basket Italy", "url": ""}
       ]
     },
     {
@@ -60,7 +60,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport MAX Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Max", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Max Italy", "url": ""}
       ]
     },
     {
@@ -69,7 +69,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport F1 Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport F1", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport F1 Italy", "url": ""}
       ]
     },
     {
@@ -78,7 +78,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport MotoGP Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport MotoGP", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport MotoGP Italy", "url": ""}
       ]
     },
     {
@@ -87,7 +87,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sports Golf Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Golf", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Golf Italy", "url": ""}
       ]
     },
     {
@@ -96,7 +96,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport Legend Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Legend", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Legend Italy", "url": ""}
       ]
     },
     {
@@ -105,7 +105,7 @@
       "group": "Sky Sport Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "Sky Sport Mix Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Mix", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Sky Sport Mix Italy", "url": ""}
       ]
     },
     {
@@ -114,7 +114,7 @@
       "group": "DAZN Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "DAZN ZONA Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "DAZN 1", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "DAZN 1 Italy", "url": ""}
       ]
     },
     {
@@ -123,7 +123,7 @@
       "group": "DAZN Italia",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "DAZN 2 Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "DAZN 2", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "DAZN 2 Italy", "url": ""}
       ]
     },
     {
@@ -132,7 +132,7 @@
       "group": "Eurosport",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "EuroSport 1 Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Eurosport 1", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Eurosport 1 Italy", "url": ""}
       ]
     },
     {
@@ -141,7 +141,7 @@
       "group": "Eurosport",
       "streams": [
         {"name": "DaddyLive", "provider": "daddy", "priority": 1, "query": "EuroSport 2 Italy", "url": ""},
-        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Eurosport 2", "url": ""}
+        {"name": "CDNLiveTV", "provider": "cdn", "priority": 2, "query": "Eurosport 2 Italy", "url": ""}
       ]
     }
   ]
