@@ -16,7 +16,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-869.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-869.php"
         },
         {
           "name": "CDNLiveTV",
@@ -37,7 +37,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-461.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-461.php"
         },
         {
           "name": "CDNLiveTV",
@@ -58,7 +58,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-870.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-870.php"
         },
         {
           "name": "CDNLiveTV",
@@ -79,7 +79,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-576.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-576.php"
         },
         {
           "name": "CDNLiveTV",
@@ -100,7 +100,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-462.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-462.php"
         },
         {
           "name": "CDNLiveTV",
@@ -121,7 +121,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-875.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-875.php"
         },
         {
           "name": "CDNLiveTV",
@@ -142,7 +142,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-460.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-460.php"
         },
         {
           "name": "CDNLiveTV",
@@ -163,7 +163,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-577.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-577.php"
         },
         {
           "name": "CDNLiveTV",
@@ -184,7 +184,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-575.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-575.php"
         },
         {
           "name": "CDNLiveTV",
@@ -205,7 +205,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-574.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-574.php"
         },
         {
           "name": "CDNLiveTV",
@@ -226,7 +226,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-575.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-575.php"
         },
         {
           "name": "CDNLiveTV",
@@ -247,7 +247,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-575.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-575.php"
         },
         {
           "name": "CDNLiveTV",
@@ -268,7 +268,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-877.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-877.php"
         },
         {
           "name": "CDNLiveTV",
@@ -289,7 +289,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-427.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-427.php"
         },
         {
           "name": "CDNLiveTV",
@@ -310,7 +310,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-878.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-878.php"
         },
         {
           "name": "CDNLiveTV",
@@ -331,7 +331,7 @@
           "priority": 1,
           "source_url_configured": false,
           "status": "error",
-          "error": "DaddyLive: nessun iframe in https://dlive.sx/cast/stream-879.php"
+          "error": "DaddyLive: nessun iframe o m3u8 in https://dlive.sx/cast/stream-879.php"
         },
         {
           "name": "CDNLiveTV",
