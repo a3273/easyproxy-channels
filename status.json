@@ -3,8 +3,8 @@
     "channels_total": 17,
     "channels_enabled": 17,
     "streams_total": 17,
-    "streams_generated": 17,
-    "streams_failed": 0
+    "streams_generated": 13,
+    "streams_failed": 4
   },
   "channels": {
     "Sky Sport 24 Daddy": {
@@ -210,10 +210,8 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "resolved",
-          "mode": "direct",
-          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-874.php",
-          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-874.php"
+          "status": "error",
+          "error": "DaddyLive: nessun mirror raggiungibile"
         }
       ]
     },
@@ -225,10 +223,8 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "resolved",
-          "mode": "direct",
-          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-877.php",
-          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-877.php"
+          "status": "error",
+          "error": "DaddyLive: nessun mirror raggiungibile"
         }
       ]
     },
@@ -240,10 +236,8 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "resolved",
-          "mode": "direct",
-          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-878.php",
-          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-878.php"
+          "status": "error",
+          "error": "DaddyLive: nessun mirror raggiungibile"
         }
       ]
     },
@@ -255,10 +249,8 @@
           "provider": "daddy",
           "priority": 1,
           "source_url_configured": false,
-          "status": "resolved",
-          "mode": "direct",
-          "url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-879.php",
-          "resolved_url": "https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-879.php"
+          "status": "error",
+          "error": "DaddyLive: nessun mirror raggiungibile"
         }
       ]
     }
