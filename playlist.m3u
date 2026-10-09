@@ -1,53 +1,69 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="Sky Sport 24" tvg-name="Sky Sport 24" tvg-logo="" group-title="Italy",Sky Sport 24 [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport 24" tvg-name="Sky Sport 24" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-24-it.png" group-title="Italy",Sky Sport 24
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-869.php
-#EXTINF:-1 tvg-id="Sky Sport Uno" tvg-name="Sky Sport Uno" tvg-logo="" group-title="Italy",Sky Sport Uno [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport Uno" tvg-name="Sky Sport Uno" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-uno-it.png" group-title="Italy",Sky Sport Uno
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-461.php
-#EXTINF:-1 tvg-id="Sky Sport Calcio" tvg-name="Sky Sport Calcio" tvg-logo="" group-title="Italy",Sky Sport Calcio [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport Calcio" tvg-name="Sky Sport Calcio" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-calcio-it.png" group-title="Italy",Sky Sport Calcio
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-870.php
-#EXTINF:-1 tvg-id="Sky Sport Tennis" tvg-name="Sky Sport Tennis" tvg-logo="" group-title="Italy",Sky Sport Tennis [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport Tennis" tvg-name="Sky Sport Tennis" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-tennis-it.png" group-title="Italy",Sky Sport Tennis
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-576.php
-#EXTINF:-1 tvg-id="Sky Sport Arena" tvg-name="Sky Sport Arena" tvg-logo="" group-title="Italy",Sky Sport Arena [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport Arena" tvg-name="Sky Sport Arena" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-arena-it.png" group-title="Italy",Sky Sport Arena
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-462.php
-#EXTINF:-1 tvg-id="Sky Sport Basket" tvg-name="Sky Sport Basket" tvg-logo="" group-title="Italy",Sky Sport Basket [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport Basket" tvg-name="Sky Sport Basket" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-nba-it.png" group-title="Italy",Sky Sport Basket
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-875.php
-#EXTINF:-1 tvg-id="Sky Sport Max" tvg-name="Sky Sport Max" tvg-logo="" group-title="Italy",Sky Sport Max [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport Max" tvg-name="Sky Sport Max" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png" group-title="Italy",Sky Sport Max
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-460.php
-#EXTINF:-1 tvg-id="Sky Sport F1" tvg-name="Sky Sport F1" tvg-logo="" group-title="Italy",Sky Sport F1 [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport F1" tvg-name="Sky Sport F1" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-f1-it.png" group-title="Italy",Sky Sport F1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-577.php
-#EXTINF:-1 tvg-id="Sky Sport MotoGP" tvg-name="Sky Sport MotoGP" tvg-logo="" group-title="Italy",Sky Sport MotoGP [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport MotoGP" tvg-name="Sky Sport MotoGP" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-motogp-it.png" group-title="Italy",Sky Sport MotoGP
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-575.php
-#EXTINF:-1 tvg-id="Sky Sport Golf" tvg-name="Sky Sport Golf" tvg-logo="" group-title="Italy",Sky Sport Golf [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Sport Golf" tvg-name="Sky Sport Golf" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-golf-it.png" group-title="Italy",Sky Sport Golf
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-574.php
-#EXTINF:-1 tvg-id="Sky Calcio 1" tvg-name="Sky Calcio 1" tvg-logo="" group-title="Italy",Sky Calcio 1 [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Calcio 1" tvg-name="Sky Calcio 1" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-1-it.png" group-title="Italy",Sky Calcio 1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-871.php
-#EXTINF:-1 tvg-id="Sky Calcio 2" tvg-name="Sky Calcio 2" tvg-logo="" group-title="Italy",Sky Calcio 2 [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Calcio 2" tvg-name="Sky Calcio 2" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-2-it.png" group-title="Italy",Sky Calcio 2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-872.php
-#EXTINF:-1 tvg-id="Sky Calcio 3" tvg-name="Sky Calcio 3" tvg-logo="" group-title="Italy",Sky Calcio 3 [DaddyLive] [HD] [DIRECT]
+#EXTINF:-1 tvg-id="Sky Calcio 3" tvg-name="Sky Calcio 3" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-3-it.png" group-title="Italy",Sky Calcio 3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
 #EXTVLCOPT:http-referrer=https://dlive.sx/
 https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-873.php
+#EXTINF:-1 tvg-id="Sky Calcio 4" tvg-name="Sky Calcio 4" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-calcio-4-it.png" group-title="Italy",Sky Calcio 4
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://dlive.sx/
+https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-874.php
+#EXTINF:-1 tvg-id="DAZN 1" tvg-name="DAZN 1" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/7c/DAZN_1_logo.png" group-title="Italy",DAZN 1
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://dlive.sx/
+https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-877.php
+#EXTINF:-1 tvg-id="Eurosport 1" tvg-name="Eurosport 1" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/spain/eurosport-1-es.png" group-title="Italy",Eurosport 1
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://dlive.sx/
+https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-878.php
+#EXTINF:-1 tvg-id="Eurosport 2" tvg-name="Eurosport 2" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/spain/eurosport-2-es.png" group-title="Italy",Eurosport 2
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://dlive.sx/
+https://dampwave-5a7b3.app.onebit.ng/proxy/manifest.m3u8?d=https%3A%2F%2Fdlive.sx%2Fcast%2Fstream-879.php
