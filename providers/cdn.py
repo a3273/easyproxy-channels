@@ -1,12 +1,11 @@
 """
-CDNLiveTV provider - API JSON via EasyProxy
+CDNLiveTV provider - API JSON pubblica
+Funziona DIRETTO (senza proxy) perché api.cdnlivetv.tv non blocca GitHub Actions
 """
 
 import re
 import base64
 import logging
-import os
-from urllib.parse import quote
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -27,22 +26,6 @@ HEADERS = {
     "Origin": PLAYER_BASE,
     "Referer": f"{PLAYER_BASE}/",
 }
-
-
-def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Response:
-    """Passa la richiesta attraverso EasyProxy per evitare blocchi IP GitHub"""
-    easyproxy_base = os.environ.get("EASYPROXY_BASE", "").rstrip("/")
-    
-    logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
-    
-    if easyproxy_base:
-        encoded_url = quote(url, safe='')
-        proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={encoded_url}"
-        logger.info("Proxy URL: %s", proxy_url[:100] + "...")
-        return session.get(proxy_url, **kwargs)
-    else:
-        logger.info("Direct URL: %s", url)
-        return session.get(url, **kwargs)
 
 
 def _get_session() -> requests.Session:
@@ -69,17 +52,19 @@ def fetch_channel_list() -> list:
     for base in (API_BASE, MIRROR):
         try:
             url = f"{base}/api/v1/channels/?user=cdnlivetv&plan=free"
-            r = _proxied_get(session, url, timeout=30)
+            r = session.get(url, timeout=20)
             logger.info("Risposta da %s: status=%d, length=%d", base, r.status_code, len(r.text))
-            logger.info("CONTENT PREVIEW: %s", r.text[:500])
+            r.raise_for_status()
+            data = r.json()
             
-            try:
-                data = r.json()
-                if isinstance(data, list) and data:
-                    logger.info("CDNLiveTV: %d canali", len(data))
-                    return data
-            except ValueError:
-                logger.warning("CDNLiveTV: risposta non-JSON da %s", base)
+            # La risposta è un dict con "channels" lista
+            if isinstance(data, dict) and "channels" in data:
+                channels = data["channels"]
+                logger.info("CDNLiveTV: %d canali", len(channels))
+                return channels
+            elif isinstance(data, list) and data:
+                logger.info("CDNLiveTV: %d canali", len(data))
+                return data
                 
         except Exception as e:
             logger.warning("CDNLiveTV mirror %s fallito: %s", base, e)
@@ -91,14 +76,17 @@ def find_channel(channels: list, query: str) -> dict:
     """Cerca canale per nome con match flessibile"""
     q = query.lower().strip()
     
+    # 1. Match esatto
     for ch in channels:
         if (ch.get("name") or "").lower() == q:
             return ch
     
+    # 2. Query contenuta nel nome
     for ch in channels:
         if q in (ch.get("name") or "").lower():
             return ch
     
+    # 3. Match parole (tutte le parole della query nel nome)
     words = set(q.split())
     best_score, best = 0, None
     for ch in channels:
@@ -122,10 +110,12 @@ def resolve_stream_url(channel: dict) -> str:
         name = channel.get("name", "").replace(" ", "%20")
         player_url = f"{PLAYER_BASE}/api/v1/channels/player/?name={name}"
     
-    r = _proxied_get(session, player_url, timeout=30)
+    logger.info("Player URL: %s", player_url)
+    r = session.get(player_url, timeout=20)
     r.raise_for_status()
     html = r.text
     
+    # 1. Base64 concatenato: atob(...) + atob(...)
     b64_parts = re.findall(r'atob\(["\']([^"\']+)["\']\)', html)
     if b64_parts:
         decoded = "".join(base64.b64decode(p).decode("utf-8", errors="ignore") for p in b64_parts)
@@ -133,6 +123,7 @@ def resolve_stream_url(channel: dict) -> str:
         if m:
             return m.group(0)
     
+    # 2. Fallback: regex diretta m3u8 nell'HTML
     m = re.search(r'https?://[^\s"\'<>]+\.m3u8[^\s"\'<>]*', html)
     if m:
         return m.group(0)
