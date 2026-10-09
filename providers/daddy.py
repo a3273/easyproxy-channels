@@ -42,7 +42,6 @@ def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Resp
     logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
     
     if easyproxy_base:
-        # Codifica completamente la URL, inclusi ? e &
         encoded_url = quote(url, safe='')
         proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={encoded_url}"
         logger.info("Proxy URL: %s", proxy_url[:100] + "...")
@@ -96,6 +95,7 @@ def fetch_channel_list(session: requests.Session) -> dict:
             url = f"{mirror}/24-7-channels.php"
             r = _proxied_get(session, url, timeout=30)
             logger.info("Risposta da %s: status=%d, length=%d", mirror, r.status_code, len(r.text))
+            logger.info("CONTENT PREVIEW: %s", r.text[:500])
             r.raise_for_status()
             html = r.text
             
@@ -209,4 +209,3 @@ def resolve(channel: dict, stream: dict) -> dict:
         "proxy": "auto",
         "proxy_required": False,
     }
-    
