@@ -1,6 +1,5 @@
 """
 DaddyLive provider - scraping nativo via EasyProxy
-Catena: 24-7-channels.php → cast/stream-{id}.php → assetrage.net/e/{token} → _econfig
 """
 
 import re
@@ -27,32 +26,23 @@ HEADERS = {
     "Accept-Encoding": "gzip, deflate, br",
     "Connection": "keep-alive",
     "Upgrade-Insecure-Requests": "1",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "none",
-    "Sec-Fetch-User": "?1",
-    "Cache-Control": "max-age=0",
 }
 
 
 def _proxied_get(session: requests.Session, url: str, **kwargs) -> requests.Response:
-    """Passa la richiesta attraverso EasyProxy per evitare blocchi IP GitHub"""
+    """Passa attraverso EasyProxy"""
     easyproxy_base = os.environ.get("EASYPROXY_BASE", "").rstrip("/")
-    
-    logger.info("EASYPROXY_BASE: %s", easyproxy_base or "NON IMPOSTATO")
     
     if easyproxy_base:
         encoded_url = quote(url, safe='')
         proxy_url = f"{easyproxy_base}/proxy/manifest.m3u8?d={encoded_url}"
-        logger.info("Proxy URL: %s", proxy_url[:100] + "...")
         return session.get(proxy_url, **kwargs)
     else:
-        logger.info("Direct URL: %s", url)
         return session.get(url, **kwargs)
 
 
 def _decode_econfig(encoded: str) -> dict:
-    """Decodifica _econfig: base64 → split 4 → rimuovi char[3] → riordina [2,0,3,1] → base64 → JSON"""
+    """Decodifica _econfig"""
     raw = base64.b64decode(encoded).decode("utf-8", errors="ignore")
     
     for sep in ["|", ",", ";", ":"]:
@@ -72,33 +62,25 @@ def _decode_econfig(encoded: str) -> dict:
 
 
 def _get_session() -> requests.Session:
-    """Crea sessione con retry automatico"""
     s = requests.Session()
     s.headers.update(HEADERS)
-    
-    retry = Retry(
-        total=3,
-        backoff_factor=1,
-        status_forcelist=[429, 500, 502, 503, 504],
-    )
+    retry = Retry(total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504])
     adapter = HTTPAdapter(max_retries=retry)
     s.mount("http://", adapter)
     s.mount("https://", adapter)
-    
     return s
 
 
 def fetch_channel_list(session: requests.Session) -> dict:
-    """Ritorna {nome_canale: id} dalla pagina 24-7-channels"""
+    """Ritorna {nome_canale: id}"""
     for mirror in MIRRORS:
         try:
             url = f"{mirror}/24-7-channels.php"
             r = _proxied_get(session, url, timeout=30)
-            logger.info("Risposta da %s: status=%d, length=%d", mirror, r.status_code, len(r.text))
             r.raise_for_status()
             html = r.text
             
-            # Regex per estrarre ID e nome dal tag <a> con data-title
+            # Regex aggiornata per data-title
             pattern = re.compile(
                 r'href="(?:[^"]*?/)?watch\.php\?id=(\d+)"[^>]*data-title="([^"]+)"',
                 re.IGNORECASE
@@ -112,11 +94,8 @@ def fetch_channel_list(session: requests.Session) -> dict:
                     channels[name] = cid
             
             if channels:
-                logger.info("DaddyLive: trovati %d canali da %s", len(channels), mirror)
+                logger.info("DaddyLive: trovati %d canali", len(channels))
                 return channels
-            else:
-                logger.warning("DaddyLive: nessun canale trovato in %s", mirror)
-                logger.debug("HTML preview: %s", html[:500])
         except Exception as e:
             logger.warning("DaddyLive mirror %s fallito: %s", mirror, e)
     
@@ -124,20 +103,17 @@ def fetch_channel_list(session: requests.Session) -> dict:
 
 
 def find_channel_id(channels: dict, query: str) -> int:
-    """Cerca ID canale con match flessibile"""
+    """Cerca ID canale"""
     q = query.lower().strip()
     
-    # 1. Match esatto
     for name, cid in channels.items():
         if name.lower() == q:
             return cid
     
-    # 2. Query contenuta nel nome
     for name, cid in channels.items():
         if q in name.lower():
             return cid
     
-    # 3. Match parole
     words = set(q.split())
     best_score, best_id = 0, None
     for name, cid in channels.items():
@@ -153,36 +129,62 @@ def find_channel_id(channels: dict, query: str) -> int:
 
 
 def resolve_stream_url(channel_id: int, session: requests.Session) -> str:
-    """Catena completa: player → iframe → embed → _econfig → stream_url"""
+    """Estrai stream URL"""
     
-    player_url = f"{BASE}/cast/stream-{channel_id}.php"
-    r = _proxied_get(session, player_url, timeout=30, headers={"Referer": f"{BASE}/watch.php?id={channel_id}"})
-    r.raise_for_status()
+    # Prova tutti i pattern di player
+    player_patterns = [
+        f"{BASE}/cast/stream-{channel_id}.php",
+        f"{BASE}/stream/stream-{channel_id}.php",
+        f"{BASE}/watch/stream-{channel_id}.php",
+        f"{BASE}/player/stream-{channel_id}.php",
+        f"{BASE}/plus/stream-{channel_id}.php",
+    ]
     
-    # Cerca iframe verso assetrage.net
-    m = re.search(r'iframe[^>]+src=["\'](https?://assetrage\.net/e/[^"\']+)["\']', r.text, re.IGNORECASE)
+    player_html = None
+    player_url = None
+    
+    for purl in player_patterns:
+        try:
+            r = _proxied_get(session, purl, timeout=20, headers={"Referer": f"{BASE}/watch.php?id={channel_id}"})
+            if r.status_code == 200 and len(r.text) > 100:
+                player_html = r.text
+                player_url = purl
+                logger.info("Player trovato: %s", purl)
+                break
+        except Exception as e:
+            logger.debug("Player %s fallito: %s", purl, e)
+    
+    if not player_html:
+        raise RuntimeError(f"DaddyLive: nessun player trovato per canale {channel_id}")
+    
+    # Cerca iframe
+    m = re.search(r'iframe[^>]+src=["\'](https?://[^"\']+)["\']', player_html, re.IGNORECASE)
     if not m:
-        # Fallback: qualsiasi iframe
-        m = re.search(r'iframe[^>]+src=["\'](https?://[^"\']+)["\']', r.text, re.IGNORECASE)
-    if not m:
-        raise RuntimeError(f"DaddyLive: nessun iframe in {player_url}")
+        # Prova a cercare m3u8 diretto nel player
+        m3 = re.search(r'https?://[^\s"\'<>]+\.m3u8[^\s"\'<>]*', player_html)
+        if m3:
+            return m3.group(0)
+        raise RuntimeError(f"DaddyLive: nessun iframe o m3u8 in {player_url}")
     
     embed_url = m.group(1)
-    logger.info("Embed URL: %s", embed_url)
     
-    r2 = _proxied_get(session, embed_url, timeout=30, headers={"Referer": player_url, "Origin": BASE})
+    # Fetch embed
+    r2 = _proxied_get(session, embed_url, timeout=20, headers={"Referer": player_url, "Origin": BASE})
     r2.raise_for_status()
     embed_html = r2.text
     
     # Cerca _econfig
     m2 = re.search(r'_econfig\s*=\s*["\']([^"\']+)["\']', embed_html)
     if m2:
-        cfg = _decode_econfig(m2.group(1))
-        stream_url = cfg.get("stream_url") or cfg.get("url") or cfg.get("src")
-        if stream_url:
-            return stream_url
+        try:
+            cfg = _decode_econfig(m2.group(1))
+            stream_url = cfg.get("stream_url") or cfg.get("url") or cfg.get("src")
+            if stream_url:
+                return stream_url
+        except Exception as e:
+            logger.warning("Decode _econfig fallito: %s", e)
     
-    # Fallback: regex diretta m3u8
+    # Fallback: regex m3u8
     m3 = re.search(r'https?://[^\s"\'<>]+\.m3u8[^\s"\'<>]*', embed_html)
     if m3:
         return m3.group(0)
@@ -191,7 +193,6 @@ def resolve_stream_url(channel_id: int, session: requests.Session) -> str:
 
 
 def get_stream(channel_name: str) -> dict:
-    """API pubblica: dato nome canale, ritorna url + headers"""
     session = _get_session()
     channels = fetch_channel_list(session)
     cid = find_channel_id(channels, channel_name)
@@ -210,7 +211,6 @@ def get_stream(channel_name: str) -> dict:
 
 
 def resolve(channel: dict, stream: dict) -> dict:
-    """Interfaccia richiesta da generate_m3u.py"""
     query = stream.get("query") or channel.get("name", "")
     result = get_stream(query)
     
