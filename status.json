@@ -24,7 +24,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -45,7 +45,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -66,7 +66,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -87,7 +87,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Tennis"
         }
       ]
     },
@@ -108,7 +108,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -129,7 +129,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -150,7 +150,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Max"
         }
       ]
     },
@@ -171,7 +171,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -192,7 +192,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -213,7 +213,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Golf"
         }
       ]
     },
@@ -234,7 +234,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport 1"
         }
       ]
     },
@@ -255,7 +255,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Sky Sport Mix"
         }
       ]
     },
@@ -276,7 +276,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per DAZN 1"
         }
       ]
     },
@@ -297,7 +297,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per DAZN 2"
         }
       ]
     },
@@ -318,7 +318,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Abu Dhabi Sports 1"
         }
       ]
     },
@@ -339,7 +339,7 @@
           "priority": 2,
           "source_url_configured": false,
           "status": "error",
-          "error": "CDNLiveTV: non raggiungibile"
+          "error": "CDNLiveTV: m3u8 non trovato per Canal Sport 2"
         }
       ]
     }
