@@ -242,18 +242,11 @@ def main():
                         provider_name
                     )
 
-                    # IMPORTANTE:
-                    # il provider riceve sempre channel + stream.
-                    # source_url può essere vuoto: il provider può
-                    # effettuare discovery dinamico.
                     result = provider.resolve(
                         channel,
                         stream
                     )
                 elif source_url:
-                    # URL già configurato: non serve alcun provider.
-                    # Questo consente di usare direttamente una sorgente
-                    # autorizzata/demo senza passare da discovery.
                     result = {
                         "url": source_url,
                         "provider": stream_name or "Direct",
@@ -360,29 +353,10 @@ def main():
 
             result = item["result"]
             stream = item["stream"]
-            mode = item["mode"]
             playback_url = item["url"]
-
-            provider_label = clean(
-                result.get(
-                    "provider",
-                    stream.get(
-                        "name",
-                        "Provider"
-                    )
-                )
-            )
-
-            quality = clean(
-                result.get(
-                    "quality",
-                    "HD"
-                )
-            )
 
             stream_key = (
                 channel_name,
-                provider_label,
                 playback_url
             )
 
@@ -402,9 +376,10 @@ def main():
                 channel_name
             )
 
+            # FIX: Legge "logo" invece di "tvg_logo"
             tvg_logo = m3u_escape(
                 channel.get(
-                    "tvg_logo",
+                    "logo",
                     ""
                 )
             )
@@ -416,12 +391,8 @@ def main():
                 )
             )
 
-            label = (
-                f"{channel_name} "
-                f"[{provider_label}] "
-                f"[{quality}] "
-                f"[{mode.upper()}]"
-            )
+            # FIX: Nome pulito senza etichette
+            label = channel_name
 
             output.append(
                 '#EXTINF:-1 '
@@ -519,3 +490,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
